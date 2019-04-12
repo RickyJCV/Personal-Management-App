@@ -12,6 +12,9 @@ public class Conexion {
 	private final String url = "jdbc:mysql://localhost:3308/"+base+ timeZone;
 	private Connection con = null;
 	
+	/**
+	 * Función que genera la conexión con la base de datos
+	 */
 	public Connection getConexion() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

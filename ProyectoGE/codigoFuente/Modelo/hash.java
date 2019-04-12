@@ -2,6 +2,9 @@ package Modelo;
 
 public class hash {
 	    public static String getHash (String txt, String hashType){
+	    	/**
+			 * Función que codifica el password convirtiendolo en un Hash para que aparezca cifrada en la BBDD y nadie pueda verla
+			 */
 	        try {
 	            java.security.MessageDigest md = java.security.MessageDigest.getInstance(hashType);
 	            byte[] array = md.digest(txt.getBytes());

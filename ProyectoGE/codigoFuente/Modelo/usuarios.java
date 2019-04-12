@@ -2,6 +2,9 @@ package Modelo;
 
 public class usuarios {
 	
+	/**
+	 * Variables necesarias de los usuarios con sus get y set
+	 */
 	private int id;
 	private String usuario;
 	private String password;
