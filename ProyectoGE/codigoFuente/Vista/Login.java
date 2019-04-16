@@ -18,6 +18,9 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -43,10 +46,10 @@ public class Login extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Creamos la ventana de login
 	 */
 	public Login() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,6 +81,9 @@ public class Login extends JFrame {
 				SqlUsuarios modSql = new SqlUsuarios();
 				usuarios mod = new usuarios();
 				
+				Date date = new Date();
+				DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				
 				String pass = new String(txtPassword.getPassword());
 				
 				if(!txtUsuario.getText().equals("") && !pass.equals("")) {
@@ -85,9 +91,14 @@ public class Login extends JFrame {
 					
 					mod.setUsuario(txtUsuario.getText());
 					mod.setPassword(nuevoPass);
+					mod.setLast_session(fechaHora.format(date).toString());
 					
+					/**
+					 * Hasta aquí ya hemos comprobado el Login y decimos que si es correcto que haga esto
+					 */
 					if(modSql.login(mod)) {
-						
+						Home Home = new Home();
+						Home.setVisible(true);
 						
 					}else {
 						JOptionPane.showMessageDialog(null, "Datos incorrectos");

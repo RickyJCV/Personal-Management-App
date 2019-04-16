@@ -54,6 +54,13 @@ public class SqlUsuarios extends Conexion {
 
 			if (rs.next()) {
 				if (usr.getPassword().equals(rs.getString(3))) {
+					
+					String sqlUpdate = "UPDATE usuarios SET last_session = ? WHERE id=?";
+					ps=con.prepareStatement(sqlUpdate);
+					ps.setString(1, usr.getLast_session());
+					ps.setInt(2, rs.getInt(1));
+					ps.execute();
+					
 					usr.setId(rs.getInt(1));
 					usr.setNombre(rs.getString(4));
 					usr.setId_tipo(rs.getInt(5));

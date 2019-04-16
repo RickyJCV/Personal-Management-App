@@ -20,7 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class registro extends JFrame {
+public class Registro extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
@@ -36,7 +36,7 @@ public class registro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					registro frame = new registro();
+					Registro frame = new Registro();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,8 +48,8 @@ public class registro extends JFrame {
 	/**
 	 * Se crea el frame de registro
 	 */
-	public registro() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Registro() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
