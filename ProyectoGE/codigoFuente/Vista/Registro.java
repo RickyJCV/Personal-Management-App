@@ -57,8 +57,8 @@ public class Registro extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Usuario:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(105, 24, 46, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel.setBounds(86, 24, 65, 14);
 		contentPane.add(lblNewLabel);
 
 		txtUsuario = new JTextField();
@@ -67,8 +67,8 @@ public class Registro extends JFrame {
 		txtUsuario.setColumns(10);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblContrasea.setBounds(86, 55, 65, 14);
+		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblContrasea.setBounds(67, 55, 84, 14);
 		contentPane.add(lblContrasea);
 
 		txtPassword = new JPasswordField();
@@ -76,8 +76,8 @@ public class Registro extends JFrame {
 		contentPane.add(txtPassword);
 
 		JLabel lblConfirmarContrasea = new JLabel("Confirmar  Contrase\u00F1a:");
-		lblConfirmarContrasea.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblConfirmarContrasea.setBounds(26, 86, 124, 14);
+		lblConfirmarContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblConfirmarContrasea.setBounds(10, 86, 140, 14);
 		contentPane.add(lblConfirmarContrasea);
 
 		txtConfirmaPassword = new JPasswordField();
@@ -85,8 +85,8 @@ public class Registro extends JFrame {
 		contentPane.add(txtConfirmaPassword);
 
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNombre.setBounds(105, 117, 57, 14);
+		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNombre.setBounds(86, 117, 76, 14);
 		contentPane.add(lblNombre);
 
 		txtNombre = new JTextField();
@@ -95,8 +95,8 @@ public class Registro extends JFrame {
 		txtNombre.setColumns(10);
 
 		JLabel lblCorreo = new JLabel("Correo:");
-		lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblCorreo.setBounds(105, 148, 46, 14);
+		lblCorreo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblCorreo.setBounds(86, 148, 65, 14);
 		contentPane.add(lblCorreo);
 
 		txtCorreo = new JTextField();
@@ -108,6 +108,7 @@ public class Registro extends JFrame {
 		 * Creamos el boton de dar de alta a los usuarios
 		 */
 		JButton btnRegistrar = new JButton("Dar de alta");
+		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SqlUsuarios modSql = new SqlUsuarios();
@@ -142,7 +143,7 @@ public class Registro extends JFrame {
 						mod.setPassword(nuevoPass);
 						mod.setNombre(txtNombre.getText());
 						mod.setCorreo(txtCorreo.getText());
-						mod.setId_tipo(1);
+						mod.setId_tipo(2);
 						/**
 						 * Si todo se cumple guardamos los registros
 						 */
@@ -177,5 +178,6 @@ public class Registro extends JFrame {
 		});
 		btnRegistrar.setBounds(161, 198, 118, 23);
 		contentPane.add(btnRegistrar);
+		setLocationRelativeTo(null);
 	}
 }

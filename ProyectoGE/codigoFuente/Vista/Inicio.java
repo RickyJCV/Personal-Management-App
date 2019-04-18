@@ -34,7 +34,6 @@ public class Inicio extends JFrame {
 	 * Creamos el frame de inicio
 	 */
 	public Inicio() {
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -69,6 +68,7 @@ public class Inicio extends JFrame {
 		});
 		btnIngresar.setBounds(254, 109, 112, 23);
 		contentPane.add(btnIngresar);
+		setLocationRelativeTo(null);
 	}
 
 }
