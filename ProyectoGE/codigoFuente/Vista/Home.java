@@ -70,14 +70,15 @@ public class Home extends JFrame {
 		btnDarBajaEmpleados.setBounds(262, 151, 127, 23);
 		contentPane.add(btnDarBajaEmpleados);
 		
-		JButton btnVerTurnos = new JButton("VER TURNOS");
+		JButton btnVerTurnos = new JButton("VER TURNOS Y SUELDO");
 		btnVerTurnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				tablaEmpleados tabla = new tablaEmpleados();
+				tabla.setVisible(true);
 			}
 		});
 		btnVerTurnos.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		btnVerTurnos.setBounds(157, 98, 113, 67);
+		btnVerTurnos.setBounds(92, 60, 237, 140);
 		contentPane.add(btnVerTurnos);
 
 		setLocationRelativeTo(null);
