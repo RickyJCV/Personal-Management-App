@@ -71,6 +71,11 @@ public class Home extends JFrame {
 		contentPane.add(btnDarBajaEmpleados);
 		
 		JButton btnVerTurnos = new JButton("VER TURNOS");
+		btnVerTurnos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnVerTurnos.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		btnVerTurnos.setBounds(157, 98, 113, 67);
 		contentPane.add(btnVerTurnos);

@@ -143,6 +143,9 @@ public class Registro extends JFrame {
 						mod.setPassword(nuevoPass);
 						mod.setNombre(txtNombre.getText());
 						mod.setCorreo(txtCorreo.getText());
+						/**
+						 * Establecemos que siempre que se registre sea de tipo usuario y no de tipo administrador por defecto
+						 */
 						mod.setId_tipo(2);
 						/**
 						 * Si todo se cumple guardamos los registros
