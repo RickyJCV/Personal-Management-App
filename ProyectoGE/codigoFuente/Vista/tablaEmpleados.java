@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import javax.swing.ScrollPaneConstants;
 
 public class tablaEmpleados extends JFrame {
 
@@ -38,7 +39,7 @@ public class tablaEmpleados extends JFrame {
 	 */
 	public tablaEmpleados() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 629, 513);
+		setBounds(100, 100, 661, 519);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,6 +63,8 @@ public class tablaEmpleados extends JFrame {
 			DefaultTableModel modelo = new DefaultTableModel(data, datos);
 			jtEmpleados.setModel(modelo);
 			JScrollPane scroll = new JScrollPane(jtEmpleados);
+			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scroll.setVisible(true);
 			getContentPane().add(scroll, BorderLayout.NORTH);
 			
 			/**
