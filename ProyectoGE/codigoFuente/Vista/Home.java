@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Home extends JFrame {
 
@@ -24,51 +26,54 @@ public class Home extends JFrame {
 	public Home(usuarios mod) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 593, 426);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JButton btnDarAltaUsuarios = new JButton("Dar Alta Usuarios");
-		btnDarAltaUsuarios.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnDarAltaUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
 		btnDarAltaUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Registro Registro = new Registro();
 				Registro.setVisible(true);
 			}
 		});
-		btnDarAltaUsuarios.setBounds(35, 86, 137, 23);
+		btnDarAltaUsuarios.setBounds(50, 206, 214, 35);
 		contentPane.add(btnDarAltaUsuarios);
 		
-		JButton btnVerUsuarios = new JButton("Ver usuarios");
-		btnVerUsuarios.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnVerUsuarios.setBounds(35, 120, 137, 23);
-		contentPane.add(btnVerUsuarios);
-		
-		JButton btnDarBajaUsuarios = new JButton("Dar Baja Usuarios");
-		btnDarBajaUsuarios.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnDarBajaUsuarios.setBounds(35, 151, 137, 23);
-		contentPane.add(btnDarBajaUsuarios);
-		
-		JButton btnDarAltaEmpleados = new JButton("Dar Alta Empleados");
-		btnDarAltaEmpleados.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnDarAltaEmpleados.addActionListener(new ActionListener() {
+		JButton btnVerUsuarios = new JButton("Ver Usuarios");
+		btnVerUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tablaUsuarios verUsuarios = new tablaUsuarios();
+				verUsuarios.setVisible(true);
 			}
 		});
-		btnDarAltaEmpleados.setBounds(262, 86, 127, 23);
-		contentPane.add(btnDarAltaEmpleados);
+		btnVerUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnVerUsuarios.setBounds(50, 160, 214, 35);
+		contentPane.add(btnVerUsuarios);
+		
+		JButton btnAdministrarUsuarios = new JButton("Administrar Usuarios");
+		btnAdministrarUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnAdministrarUsuarios.setBounds(50, 252, 214, 37);
+		contentPane.add(btnAdministrarUsuarios);
 		
 		JButton btnVerEmpleados = new JButton("Ver Empleados");
-		btnVerEmpleados.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnVerEmpleados.setBounds(262, 120, 127, 23);
+		btnVerEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tablaEmpleados verEmpleados = new tablaEmpleados();
+				verEmpleados.setVisible(true);
+			}
+		});
+		btnVerEmpleados.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnVerEmpleados.setBounds(327, 161, 214, 33);
 		contentPane.add(btnVerEmpleados);
 		
-		JButton btnDarBajaEmpleados = new JButton("Dar Baja Empleados");
-		btnDarBajaEmpleados.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnDarBajaEmpleados.setBounds(262, 151, 127, 23);
-		contentPane.add(btnDarBajaEmpleados);
+		JButton btnAdministrarEmpleados = new JButton("Administrar Empleados");
+		btnAdministrarEmpleados.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnAdministrarEmpleados.setBounds(327, 206, 214, 35);
+		contentPane.add(btnAdministrarEmpleados);
 		
 		JButton btnVerTurnos = new JButton("VER TURNOS Y SUELDO");
 		btnVerTurnos.addActionListener(new ActionListener() {
@@ -77,22 +82,47 @@ public class Home extends JFrame {
 				tabla.setVisible(true);
 			}
 		});
-		btnVerTurnos.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		btnVerTurnos.setBounds(92, 60, 237, 140);
+		btnVerTurnos.setFont(new Font("Monospaced", Font.BOLD, 16));
+		btnVerTurnos.setBounds(165, 133, 237, 140);
 		contentPane.add(btnVerTurnos);
+		
+		JLabel lblUser = new JLabel("\u00A1Bienvenido, para ver su turno y sueldo pulse el bot\u00F3n y \r\nintroduzca su C\u00F3digo!");
+		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUser.setFont(new Font("Consolas", Font.BOLD, 12));
+		lblUser.setBounds(20, 58, 557, 29);
+		contentPane.add(lblUser);
+		
+		JLabel lblAdmin = new JLabel("\u00A1Bienvenido al Sistema de Gesti\u00F3n de Empleados y Usuarios!");
+		lblAdmin.setFont(new Font("Consolas", Font.BOLD, 16));
+		lblAdmin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdmin.setBounds(10, 40, 557, 23);
+		contentPane.add(lblAdmin);
+		
+		JLabel lblUsuariosAdmin = new JLabel("Gesti\u00F3n de Usuarios");
+		lblUsuariosAdmin.setFont(new Font("Consolas", Font.BOLD, 15));
+		lblUsuariosAdmin.setBounds(69, 114, 178, 16);
+		contentPane.add(lblUsuariosAdmin);
+		
+		JLabel lblEmpleadosAdmin = new JLabel("Gesti\u00F3n de Empleados");
+		lblEmpleadosAdmin.setFont(new Font("Consolas", Font.BOLD, 15));
+		lblEmpleadosAdmin.setBounds(346, 115, 183, 14);
+		contentPane.add(lblEmpleadosAdmin);
 
 		setLocationRelativeTo(null);
 		this.mod = mod;
 
 		if (mod.getId_tipo() == 1) {
 			btnVerTurnos.setVisible(false);
+			lblUser.setVisible(false);
 		} else if (mod.getId_tipo() == 2) {
+			lblEmpleadosAdmin.setVisible(false);
+			lblUsuariosAdmin.setVisible(false);
+			lblAdmin.setVisible(false);
 			btnDarAltaUsuarios.setVisible(false);
 			btnVerUsuarios.setVisible(false);
-			btnDarBajaUsuarios.setVisible(false);
-			btnDarAltaEmpleados.setVisible(false);
+			btnAdministrarUsuarios.setVisible(false);
 			btnVerEmpleados.setVisible(false);
-			btnDarBajaEmpleados.setVisible(false);
+			btnAdministrarEmpleados.setVisible(false);
 		}
 	}
 }

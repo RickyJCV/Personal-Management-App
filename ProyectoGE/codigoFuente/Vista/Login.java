@@ -30,27 +30,11 @@ public class Login extends JFrame {
 	private JPasswordField txtPassword;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Creamos la ventana de login
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 529, 373);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -58,25 +42,25 @@ public class Login extends JFrame {
 
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUsuario.setBounds(127, 80, 103, 17);
+		lblUsuario.setBounds(126, 99, 103, 17);
 		contentPane.add(lblUsuario);
 
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(198, 80, 129, 20);
+		txtUsuario.setBounds(218, 99, 129, 20);
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblContrasea.setBounds(101, 126, 103, 17);
+		lblContrasea.setBounds(105, 147, 103, 17);
 		contentPane.add(lblContrasea);
 
 		txtPassword = new JPasswordField();
-		txtPassword.setBounds(198, 126, 129, 20);
+		txtPassword.setBounds(218, 147, 129, 20);
 		contentPane.add(txtPassword);
 
 		JButton btnIngresar = new JButton("Iniciar Sesi\u00F3n");
-		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SqlUsuarios modSql = new SqlUsuarios();
@@ -110,8 +94,29 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		btnIngresar.setBounds(165, 196, 120, 23);
+		btnIngresar.setBounds(198, 193, 129, 25);
 		contentPane.add(btnIngresar);
+		
+		JLabel lblNewLabel = new JLabel("Bienvenido al Sistema de Gesti\u00F3n de Empleados y Usuarios");
+		lblNewLabel.setFont(new Font("Consolas", Font.BOLD, 15));
+		lblNewLabel.setBounds(28, 11, 503, 77);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Registro frame = new Registro();
+				frame.setVisible(true);
+			}
+		});
+		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnRegistrarse.setBounds(53, 287, 123, 23);
+		contentPane.add(btnRegistrarse);
+		
+		JLabel lblParaRegistrarsePulse = new JLabel("Para registrarse pulse el siguiente bot\u00F3n:");
+		lblParaRegistrarsePulse.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		lblParaRegistrarsePulse.setBounds(10, 256, 233, 20);
+		contentPane.add(lblParaRegistrarsePulse);
 		setLocationRelativeTo(null);
 	}
 }

@@ -2,43 +2,39 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import Modelo.Conexion;
-
-import javax.swing.JTable;
-import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.awt.Button;
+
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
-public class tablaEmpleados extends JFrame {
+import Modelo.Conexion;
+import javax.swing.SwingConstants;
+
+public class tablaUsuarios extends JFrame {
 
 	private JPanel contentPane;
-	private JTable jtEmpleados;
+	private JTable jtUsuarios;
 	private JTextField txtCampo;
 
 	/**
 	 * Creamos la tabla que pueden ver los empleados
 	 */
-	public tablaEmpleados() {
+	public tablaUsuarios() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 661, 519);
 		contentPane = new JPanel();
@@ -50,9 +46,9 @@ public class tablaEmpleados extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		jtEmpleados = new JTable();
-		jtEmpleados.setBounds(22, 22, 561, 338);
-		panel.add(jtEmpleados);
+		jtUsuarios = new JTable();
+		jtUsuarios.setBounds(22, 22, 561, 338);
+		panel.add(jtUsuarios);
 
 		try {
 			/**
@@ -60,10 +56,10 @@ public class tablaEmpleados extends JFrame {
 			 * un scroll
 			 */
 			Object[][] data = new Object[0][0];
-			String[] datos = { "Código Empleado", "Nombre", "Apellido", "Puesto", "Horas" };
+			String[] datos = { "ID Usuario","Usuario", "Contraseña", "Nombre", "Correo", "Última sesión", "Tipo de Usuario" };
 			DefaultTableModel modelo = new DefaultTableModel(data, datos);
-			jtEmpleados.setModel(modelo);
-			JScrollPane scroll = new JScrollPane(jtEmpleados);
+			jtUsuarios.setModel(modelo);
+			JScrollPane scroll = new JScrollPane(jtUsuarios);
 			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scroll.setVisible(true);
 			getContentPane().add(scroll, BorderLayout.NORTH);
@@ -78,7 +74,7 @@ public class tablaEmpleados extends JFrame {
 			/**
 			 * Ejecutamos la sql para recibir los datos
 			 */
-			String sql = "SELECT cod_empleado,nombre,apellido,puesto,horas FROM empleado";
+			String sql = "SELECT * FROM usuarios";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -99,7 +95,7 @@ public class tablaEmpleados extends JFrame {
 				modelo.addRow(filas);
 			}
 		} catch (SQLException ex) {
-			JOptionPane.showMessageDialog(null, "No se puede mostrar la tabla empleados");
+			JOptionPane.showMessageDialog(null, "No se puede mostrar la tabla de usuarios");
 		}
 
 		/**
@@ -108,14 +104,14 @@ public class tablaEmpleados extends JFrame {
 		JButton btnCargar = new JButton("Buscar");
 		btnCargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				jtEmpleados = new JTable();
-				jtEmpleados.setBounds(22, 22, 561, 338);
-				panel.add(jtEmpleados);
+				jtUsuarios = new JTable();
+				jtUsuarios.setBounds(22, 22, 561, 338);
+				panel.add(jtUsuarios);
 				String campo = txtCampo.getText();
 				String where = "";
 
 				if (!"".equals(campo)) {
-					where = "WHERE cod_empleado = '" + campo + "'";
+					where = "WHERE id = '" + campo + "'";
 
 					try {
 						/**
@@ -123,10 +119,10 @@ public class tablaEmpleados extends JFrame {
 						 * un scroll
 						 */
 						Object[][] data = new Object[0][0];
-						String[] datos = { "Código Empleado", "Nombre", "Apellido", "Puesto", "Sueldo", "Horas" };
+						String[] datos = { "ID Usuario","Usuario", "Contraseña", "Nombre", "Correo", "Última sesión", "Tipo de Usuario" };
 						DefaultTableModel modelo = new DefaultTableModel(data, datos);
-						jtEmpleados.setModel(modelo);
-						JScrollPane scroll = new JScrollPane(jtEmpleados);
+						jtUsuarios.setModel(modelo);
+						JScrollPane scroll = new JScrollPane(jtUsuarios);
 						getContentPane().add(scroll, BorderLayout.NORTH);
 
 						/**
@@ -140,7 +136,7 @@ public class tablaEmpleados extends JFrame {
 						 * Ejecutamos la sql para recibir los datos, pero aquí ponemos el where para
 						 * filtrar por el cod_empleado
 						 */
-						String sql = "SELECT cod_empleado,nombre,apellido,puesto,sueldo,horas FROM empleado " + where;
+						String sql = "SELECT * FROM usuarios " + where;
 						ps = con.prepareStatement(sql);
 						rs = ps.executeQuery();
 
@@ -161,10 +157,10 @@ public class tablaEmpleados extends JFrame {
 							modelo.addRow(filas);
 						}
 					} catch (SQLException ex) {
-						JOptionPane.showMessageDialog(null, "No se puede mostrar la tabla empleados");
+						JOptionPane.showMessageDialog(null, "No se puede mostrar la tabla de usuarios");
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Debes introducir un código de empleado");
+					JOptionPane.showMessageDialog(null, "Debes introducir un ID de usuario");
 				}
 			}
 		});
@@ -177,8 +173,9 @@ public class tablaEmpleados extends JFrame {
 		panel.add(txtCampo);
 		txtCampo.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("Introduce tu c\u00F3digo de empleado:");
-		lblNewLabel.setBounds(10, 15, 221, 14);
+		JLabel lblNewLabel = new JLabel("Introduce el ID de usuario:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(29, 15, 221, 14);
 		panel.add(lblNewLabel);
 
 	}
