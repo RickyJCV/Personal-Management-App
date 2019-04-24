@@ -1,12 +1,12 @@
 package Controlador;
 
-import Vista.Login;
+import Vista.login;
 
 public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Login frame = new Login();
+		login frame = new login();
 		frame.setVisible(true);
 	}
 

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Modelo.SqlUsuarios;
+import Modelo.sqlUsuarios;
 import Modelo.hash;
 import Modelo.usuarios;
 
@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
-public class Login extends JFrame {
+public class login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
@@ -32,7 +32,7 @@ public class Login extends JFrame {
 	/**
 	 * Creamos la ventana de login
 	 */
-	public Login() {
+	public login() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 529, 373);
 		contentPane = new JPanel();
@@ -63,7 +63,7 @@ public class Login extends JFrame {
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SqlUsuarios modSql = new SqlUsuarios();
+				sqlUsuarios modSql = new sqlUsuarios();
 				usuarios mod = new usuarios();
 
 				Date date = new Date();
@@ -83,7 +83,7 @@ public class Login extends JFrame {
 					 * esto
 					 */
 					if (modSql.login(mod)) {
-						Home Home = new Home(mod);
+						home Home = new home(mod);
 						Home.setVisible(true);
 
 					} else {
@@ -105,7 +105,7 @@ public class Login extends JFrame {
 		JButton btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Registro frame = new Registro();
+				registro frame = new registro();
 				frame.setVisible(true);
 			}
 		});

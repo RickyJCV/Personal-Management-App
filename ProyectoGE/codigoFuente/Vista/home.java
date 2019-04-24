@@ -15,7 +15,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class Home extends JFrame {
+public class home extends JFrame {
 
 	private JPanel contentPane;
 	usuarios mod;
@@ -23,7 +23,7 @@ public class Home extends JFrame {
 	/**
 	 * Constructor que recibe el modelo de usuarios para el HOME
 	 */
-	public Home(usuarios mod) {
+	public home(usuarios mod) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 593, 426);
@@ -36,7 +36,7 @@ public class Home extends JFrame {
 		btnDarAltaUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
 		btnDarAltaUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Registro Registro = new Registro();
+				registro Registro = new registro();
 				Registro.setVisible(true);
 			}
 		});
@@ -71,6 +71,12 @@ public class Home extends JFrame {
 		contentPane.add(btnVerEmpleados);
 		
 		JButton btnAdministrarEmpleados = new JButton("Administrar Empleados");
+		btnAdministrarEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				administrarEmpleados frame = new administrarEmpleados();
+				frame.setVisible(true);
+			}
+		});
 		btnAdministrarEmpleados.setFont(new Font("Consolas", Font.BOLD, 14));
 		btnAdministrarEmpleados.setBounds(327, 206, 214, 35);
 		contentPane.add(btnAdministrarEmpleados);

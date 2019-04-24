@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Modelo.SqlUsuarios;
+import Modelo.sqlUsuarios;
 import Modelo.hash;
 import Modelo.usuarios;
 
@@ -20,7 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Registro extends JFrame {
+public class registro extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
@@ -32,7 +32,7 @@ public class Registro extends JFrame {
 	/**
 	 * Se crea el frame de registro de usuarios
 	 */
-	public Registro() {
+	public registro() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -95,7 +95,7 @@ public class Registro extends JFrame {
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SqlUsuarios modSql = new SqlUsuarios();
+				sqlUsuarios modSql = new sqlUsuarios();
 				usuarios mod = new usuarios();
 				
 				String pass = new String(txtPassword.getPassword());

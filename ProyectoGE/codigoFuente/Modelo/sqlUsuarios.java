@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SqlUsuarios extends Conexion {
+public class sqlUsuarios extends Conexion {
 
 	public boolean registrar(usuarios usr) {
 
