@@ -22,7 +22,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Modelo.Conexion;
+import Modelo.conexion;
 import javax.swing.SwingConstants;
 
 public class tablaUsuarios extends JFrame {
@@ -69,7 +69,7 @@ public class tablaUsuarios extends JFrame {
 			 */
 			PreparedStatement ps = null;
 			ResultSet rs = null;
-			Conexion conn = new Conexion();
+			conexion conn = new conexion();
 			Connection con = conn.getConexion();
 			/**
 			 * Ejecutamos la sql para recibir los datos
@@ -130,7 +130,7 @@ public class tablaUsuarios extends JFrame {
 						 */
 						PreparedStatement ps = null;
 						ResultSet rs = null;
-						Conexion conn = new Conexion();
+						conexion conn = new conexion();
 						Connection con = conn.getConexion();
 						/**
 						 * Ejecutamos la sql para recibir los datos, pero aquí ponemos el where para

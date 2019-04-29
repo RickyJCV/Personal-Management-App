@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexion {
+public class conexion {
 	private final String base = "empleados";
 	private final String user = "root";
 	private final String password = "manolo";

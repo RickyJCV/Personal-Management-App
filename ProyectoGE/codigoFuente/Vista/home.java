@@ -36,7 +36,7 @@ public class home extends JFrame {
 		btnDarAltaUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
 		btnDarAltaUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				registro Registro = new registro();
+				registroAdmin Registro = new registroAdmin();
 				Registro.setVisible(true);
 			}
 		});
@@ -55,6 +55,12 @@ public class home extends JFrame {
 		contentPane.add(btnVerUsuarios);
 		
 		JButton btnAdministrarUsuarios = new JButton("Administrar Usuarios");
+		btnAdministrarUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				administrarUsuarios verUsuarios = new administrarUsuarios();
+				verUsuarios.setVisible(true);
+			}
+		});
 		btnAdministrarUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
 		btnAdministrarUsuarios.setBounds(50, 252, 214, 37);
 		contentPane.add(btnAdministrarUsuarios);
