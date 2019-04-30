@@ -1,2 +1,2 @@
 # Proyecto-Gestion-Empleados
-Proyecto final de programación con interfaz gráfica de gestión de empleados.
+Proyecto Final de Programación en Java, usando el Modelo, Vista, Controlador. Aplicación con Interfaz Gráfica de Gestión de Empleados y Usuarios.
