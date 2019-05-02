@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Modelo.conexion;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class tablaUsuarios extends JFrame {
 
@@ -102,6 +103,7 @@ public class tablaUsuarios extends JFrame {
 		 * Añadimos un boton de busqueda para encontrar nuestros datos
 		 */
 		JButton btnCargar = new JButton("Buscar");
+		btnCargar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				jtUsuarios = new JTable();
@@ -174,6 +176,7 @@ public class tablaUsuarios extends JFrame {
 		txtCampo.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Introduce el ID de usuario:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(29, 15, 221, 14);
 		panel.add(lblNewLabel);

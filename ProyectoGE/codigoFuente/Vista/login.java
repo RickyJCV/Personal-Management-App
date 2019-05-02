@@ -85,6 +85,7 @@ public class login extends JFrame {
 					if (modSql.login(mod)) {
 						home Home = new home(mod);
 						Home.setVisible(true);
+						dispose();
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Datos incorrectos");
@@ -98,8 +99,8 @@ public class login extends JFrame {
 		contentPane.add(btnIngresar);
 		
 		JLabel lblNewLabel = new JLabel("Bienvenido al Sistema de Gesti\u00F3n de Empleados y Usuarios");
-		lblNewLabel.setFont(new Font("Consolas", Font.BOLD, 15));
-		lblNewLabel.setBounds(28, 11, 503, 77);
+		lblNewLabel.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
+		lblNewLabel.setBounds(10, 11, 493, 77);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");

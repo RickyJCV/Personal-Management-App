@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class administrarEmpleados extends JFrame {
 
@@ -76,60 +77,67 @@ public class administrarEmpleados extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("C\u00F3digo Empleado:");
-		lblNewLabel.setBounds(73, 37, 111, 23);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setBounds(41, 24, 111, 23);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
-		lblNewLabel_1.setBounds(112, 71, 46, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(101, 97, 67, 14);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(112, 105, 46, 14);
+		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblApellido.setBounds(92, 128, 60, 14);
 		contentPane.add(lblApellido);
 
 		JLabel lblPuesto = new JLabel("Puesto:");
-		lblPuesto.setBounds(112, 130, 46, 14);
+		lblPuesto.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPuesto.setBounds(101, 159, 83, 14);
 		contentPane.add(lblPuesto);
 
 		JLabel lblNewLabel_2 = new JLabel("Sueldo:");
-		lblNewLabel_2.setBounds(112, 167, 46, 14);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setBounds(102, 190, 59, 14);
 		contentPane.add(lblNewLabel_2);
 
 		JLabel lblHoras = new JLabel("Horas:");
-		lblHoras.setBounds(112, 198, 46, 14);
+		lblHoras.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblHoras.setBounds(101, 224, 93, 14);
 		contentPane.add(lblHoras);
 
 		txtCodEmpleado = new JTextField();
-		txtCodEmpleado.setBounds(178, 38, 86, 20);
+		txtCodEmpleado.setBounds(162, 25, 86, 20);
 		contentPane.add(txtCodEmpleado);
 		txtCodEmpleado.setColumns(10);
 
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(178, 68, 195, 20);
+		txtNombre.setBounds(178, 94, 195, 20);
 		contentPane.add(txtNombre);
 
 		txtApellido = new JTextField();
 		txtApellido.setColumns(10);
-		txtApellido.setBounds(178, 102, 195, 20);
+		txtApellido.setBounds(178, 125, 195, 20);
 		contentPane.add(txtApellido);
 
 		txtPuesto = new JTextField();
 		txtPuesto.setColumns(10);
-		txtPuesto.setBounds(178, 133, 195, 20);
+		txtPuesto.setBounds(178, 156, 195, 20);
 		contentPane.add(txtPuesto);
 
 		txtSueldo = new JTextField();
 		txtSueldo.setColumns(10);
-		txtSueldo.setBounds(178, 164, 195, 20);
+		txtSueldo.setBounds(178, 187, 195, 20);
 		contentPane.add(txtSueldo);
 
 		txtHoras = new JTextField();
 		txtHoras.setColumns(10);
-		txtHoras.setBounds(178, 195, 195, 20);
+		txtHoras.setBounds(178, 221, 195, 20);
 		contentPane.add(txtHoras);
 
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -162,6 +170,7 @@ public class administrarEmpleados extends JFrame {
 		contentPane.add(btnGuardar);
 
 		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -195,6 +204,7 @@ public class administrarEmpleados extends JFrame {
 		contentPane.add(btnModificar);
 
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -223,6 +233,7 @@ public class administrarEmpleados extends JFrame {
 		contentPane.add(btnEliminar);
 
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarCajas();
@@ -232,6 +243,7 @@ public class administrarEmpleados extends JFrame {
 		contentPane.add(btnLimpiar);
 
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -257,7 +269,17 @@ public class administrarEmpleados extends JFrame {
 				}
 			}
 		});
-		btnBuscar.setBounds(284, 37, 89, 23);
+		btnBuscar.setBounds(258, 24, 89, 23);
 		contentPane.add(btnBuscar);
+		
+		JLabel label = new JLabel("Introduzca un c\u00F3digo");
+		label.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		label.setBounds(357, 24, 146, 14);
+		contentPane.add(label);
+		
+		JLabel lblParaAdministrarEse = new JLabel("para administrar ese empleado.");
+		lblParaAdministrarEse.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		lblParaAdministrarEse.setBounds(357, 33, 146, 14);
+		contentPane.add(lblParaAdministrarEse);
 	}
 }

@@ -28,6 +28,7 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Font;
 
 public class tablaEmpleados extends JFrame {
 
@@ -106,6 +107,7 @@ public class tablaEmpleados extends JFrame {
 		 * Añadimos un boton de busqueda para encontrar nuestros datos
 		 */
 		JButton btnCargar = new JButton("Buscar");
+		btnCargar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				jtEmpleados = new JTable();
@@ -178,6 +180,7 @@ public class tablaEmpleados extends JFrame {
 		txtCampo.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Introduce tu c\u00F3digo de empleado:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(10, 15, 221, 14);
 		panel.add(lblNewLabel);
 

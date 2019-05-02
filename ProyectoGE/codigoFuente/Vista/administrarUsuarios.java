@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class administrarUsuarios extends JFrame {
 
@@ -79,27 +80,32 @@ public class administrarUsuarios extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("C\u00F3digo Usuario:");
-		lblNewLabel.setBounds(73, 37, 111, 23);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setBounds(38, 22, 111, 23);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre usuario:");
-		lblNewLabel_1.setBounds(73, 85, 85, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(58, 85, 100, 14);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblApellido = new JLabel("Contrase\u00F1a:");
+		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblApellido.setBounds(90, 116, 85, 14);
 		contentPane.add(lblApellido);
 
 		JLabel lblPuesto = new JLabel("Nombre:");
-		lblPuesto.setBounds(112, 147, 46, 14);
+		lblPuesto.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPuesto.setBounds(100, 147, 68, 14);
 		contentPane.add(lblPuesto);
 
 		JLabel lblNewLabel_2 = new JLabel("Correo:");
-		lblNewLabel_2.setBounds(112, 178, 46, 14);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setBounds(110, 178, 46, 14);
 		contentPane.add(lblNewLabel_2);
 
 		txtCodUser = new JTextField();
-		txtCodUser.setBounds(178, 38, 86, 20);
+		txtCodUser.setBounds(142, 23, 86, 20);
 		contentPane.add(txtCodUser);
 		txtCodUser.setColumns(10);
 
@@ -124,6 +130,7 @@ public class administrarUsuarios extends JFrame {
 		contentPane.add(txtCorreo);
 
 		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -158,6 +165,7 @@ public class administrarUsuarios extends JFrame {
 		contentPane.add(btnModificar);
 
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -186,6 +194,7 @@ public class administrarUsuarios extends JFrame {
 		contentPane.add(btnEliminar);
 
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarCajas();
@@ -195,6 +204,7 @@ public class administrarUsuarios extends JFrame {
 		contentPane.add(btnLimpiar);
 
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
@@ -220,7 +230,7 @@ public class administrarUsuarios extends JFrame {
 				}
 			}
 		});
-		btnBuscar.setBounds(284, 37, 89, 23);
+		btnBuscar.setBounds(238, 22, 89, 23);
 		contentPane.add(btnBuscar);
 		
 		txtTipoUser = new JTextField();
@@ -229,8 +239,19 @@ public class administrarUsuarios extends JFrame {
 		txtTipoUser.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Tipo Usuario:");
-		lblNewLabel_3.setBounds(90, 209, 68, 14);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_3.setBounds(73, 209, 85, 14);
 		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Introduzca un c\u00F3digo");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		lblNewLabel_4.setBounds(337, 22, 146, 14);
+		contentPane.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("para administrar ese usuario.");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		lblNewLabel_5.setBounds(337, 31, 136, 14);
+		contentPane.add(lblNewLabel_5);
 	}
 }
 
