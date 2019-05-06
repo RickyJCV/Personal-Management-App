@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Modelo.conexion;
 import Modelo.hash;
 
 import javax.swing.JLabel;
@@ -30,34 +31,10 @@ public class administrarUsuarios extends JFrame {
 	private JTextField txtPass;
 	private JTextField txtNombre;
 	private JTextField txtCorreo;
-
-	private final String base = "empleados";
-	private final String user = "root";
-	private final String password = "manolo";
-	private final String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private final String url = "jdbc:mysql://localhost:3308/" + base + timeZone;
-	private Connection con = null;
+	private JTextField txtTipoUser;
 
 	PreparedStatement ps;
 	ResultSet rs;
-	private JTextField txtTipoUser;
-
-	/**
-	 * Función que genera la conexión con la base de datos
-	 */
-	public Connection getConexion() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(url, user, password);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return con;
-	}
 
 	private void limpiarCajas() {
 		txtCodUser.setText(null);
@@ -136,7 +113,7 @@ public class administrarUsuarios extends JFrame {
 				Connection con = null;
 
 				try {				
-					con = getConexion();
+					con = conexion.getConexion();
 					ps = con.prepareStatement("UPDATE usuarios SET usuario=?, password=?, nombre=?, correo=?, id_tipo=? WHERE id=?");
 					String nuevoPass = hash.sha1(txtPass.getText());
 					ps.setString(1, txtNombreUser.getText());
@@ -171,7 +148,7 @@ public class administrarUsuarios extends JFrame {
 				Connection con = null;
 
 				try {
-					con = getConexion();
+					con = conexion.getConexion();
 					ps = con.prepareStatement("DELETE FROM usuarios WHERE id=?");
 					ps.setInt(1, Integer.parseInt(txtCodUser.getText()));
 
@@ -210,7 +187,7 @@ public class administrarUsuarios extends JFrame {
 				Connection con = null;
 
 				try {
-					con = getConexion();
+					con = conexion.getConexion();
 					ps = con.prepareStatement("SELECT usuario,password,nombre,correo,id_tipo FROM usuarios WHERE id=?");
 					ps.setString(1, txtCodUser.getText());
 					

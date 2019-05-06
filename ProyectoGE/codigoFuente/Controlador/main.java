@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.conexion;
 import Vista.login;
 
 public class main {

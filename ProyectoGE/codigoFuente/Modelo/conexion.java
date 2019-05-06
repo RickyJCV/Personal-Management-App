@@ -5,17 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class conexion {
-	private final String base = "empleados";
-	private final String user = "root";
-	private final String password = "manolo";
-	private final String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private final String url = "jdbc:mysql://localhost:3308/"+base+ timeZone;
-	private Connection con = null;
+	private final static String base = "empleados";
+	private final static String user = "root";
+	private final static String password = "manolo";
+	private final static String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private final static String url = "jdbc:mysql://localhost:3306/"+base+ timeZone;
+	private static Connection con = null;
 	
 	/**
 	 * Función que genera la conexión con la base de datos
 	 */
-	public Connection getConexion() {
+	public static Connection getConexion() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, user, password);

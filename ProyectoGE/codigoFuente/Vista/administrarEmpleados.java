@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Modelo.conexion;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -27,34 +30,10 @@ public class administrarEmpleados extends JFrame {
 	private JTextField txtApellido;
 	private JTextField txtPuesto;
 	private JTextField txtSueldo;
-	private JTextField txtHoras;
-
-	private final String base = "empleados";
-	private final String user = "root";
-	private final String password = "manolo";
-	private final String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private final String url = "jdbc:mysql://localhost:3308/" + base + timeZone;
-	private Connection con = null;
+	private JTextField txtHoras;	
 
 	PreparedStatement ps;
 	ResultSet rs;
-
-	/**
-	 * Función que genera la conexión con la base de datos
-	 */
-	public Connection getConexion() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(url, user, password);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return con;
-	}
 
 	private void limpiarCajas() {
 		txtCodEmpleado.setText(null);
@@ -143,7 +122,7 @@ public class administrarEmpleados extends JFrame {
 				Connection con = null;
 
 				try {
-					con = getConexion();
+					con = conexion.getConexion();
 					ps = con.prepareStatement("INSERT INTO empleado(nombre, apellido, puesto, sueldo, horas) VALUES (?,?,?,?,?)");
 					ps.setString(1, txtNombre.getText());
 					ps.setString(2, txtApellido.getText());
@@ -176,7 +155,7 @@ public class administrarEmpleados extends JFrame {
 				Connection con = null;
 
 				try {
-					con = getConexion();
+					con = conexion.getConexion();
 					ps = con.prepareStatement("UPDATE empleado SET nombre=?, apellido=?, puesto=?, sueldo=?, horas=? WHERE cod_empleado=?");
 					ps.setString(1, txtNombre.getText());
 					ps.setString(2, txtApellido.getText());
@@ -210,7 +189,7 @@ public class administrarEmpleados extends JFrame {
 				Connection con = null;
 
 				try {
-					con = getConexion();
+					con = conexion.getConexion();
 					ps = con.prepareStatement("DELETE FROM empleado WHERE cod_empleado=?");
 					ps.setInt(1, Integer.parseInt(txtCodEmpleado.getText()));
 
@@ -249,7 +228,7 @@ public class administrarEmpleados extends JFrame {
 				Connection con = null;
 
 				try {
-					con = getConexion();
+					con = conexion.getConexion();
 					ps = con.prepareStatement("SELECT nombre,apellido,puesto,sueldo,horas FROM empleado WHERE cod_empleado=?");
 					ps.setString(1, txtCodEmpleado.getText());
 					
