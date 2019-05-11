@@ -22,6 +22,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class administrarUsuarios extends JFrame {
 
@@ -54,57 +56,36 @@ public class administrarUsuarios extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("C\u00F3digo Usuario:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(38, 22, 111, 23);
-		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre usuario:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(58, 85, 100, 14);
-		contentPane.add(lblNewLabel_1);
 
 		JLabel lblApellido = new JLabel("Contrase\u00F1a:");
 		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblApellido.setBounds(90, 116, 85, 14);
-		contentPane.add(lblApellido);
 
 		JLabel lblPuesto = new JLabel("Nombre:");
 		lblPuesto.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPuesto.setBounds(100, 147, 68, 14);
-		contentPane.add(lblPuesto);
 
 		JLabel lblNewLabel_2 = new JLabel("Correo:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(110, 178, 46, 14);
-		contentPane.add(lblNewLabel_2);
 
 		txtCodUser = new JTextField();
-		txtCodUser.setBounds(142, 23, 86, 20);
-		contentPane.add(txtCodUser);
 		txtCodUser.setColumns(10);
 
 		txtNombreUser = new JTextField();
 		txtNombreUser.setColumns(10);
-		txtNombreUser.setBounds(178, 82, 195, 20);
-		contentPane.add(txtNombreUser);
 
 		txtPass = new JTextField();
 		txtPass.setColumns(10);
-		txtPass.setBounds(178, 113, 195, 20);
-		contentPane.add(txtPass);
 
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(178, 144, 195, 20);
-		contentPane.add(txtNombre);
 
 		txtCorreo = new JTextField();
 		txtCorreo.setColumns(10);
-		txtCorreo.setBounds(178, 175, 195, 20);
-		contentPane.add(txtCorreo);
 
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -129,7 +110,7 @@ public class administrarUsuarios extends JFrame {
 						JOptionPane.showMessageDialog(null, "Usuario Modificado");
 						limpiarCajas();
 					} else {
-						JOptionPane.showMessageDialog(null, "Error al Modificar Usuario");
+						JOptionPane.showMessageDialog(null, "Error al Modificar Usuario","Error",JOptionPane.ERROR_MESSAGE);
 						limpiarCajas();
 					}
 					con.close();
@@ -138,8 +119,6 @@ public class administrarUsuarios extends JFrame {
 				}
 			}
 		});
-		btnModificar.setBounds(112, 248, 89, 23);
-		contentPane.add(btnModificar);
 
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -158,7 +137,7 @@ public class administrarUsuarios extends JFrame {
 						JOptionPane.showMessageDialog(null, "Usuario Eliminado");
 						limpiarCajas();
 					} else {
-						JOptionPane.showMessageDialog(null, "Error al Eliminar Usuario");
+						JOptionPane.showMessageDialog(null, "Error al Eliminar Usuario","Error",JOptionPane.ERROR_MESSAGE);
 						limpiarCajas();
 					}
 					con.close();
@@ -167,8 +146,6 @@ public class administrarUsuarios extends JFrame {
 				}
 			}
 		});
-		btnEliminar.setBounds(221, 248, 89, 23);
-		contentPane.add(btnEliminar);
 
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -177,8 +154,6 @@ public class administrarUsuarios extends JFrame {
 				limpiarCajas();
 			}
 		});
-		btnLimpiar.setBounds(327, 248, 89, 23);
-		contentPane.add(btnLimpiar);
 
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
@@ -200,35 +175,143 @@ public class administrarUsuarios extends JFrame {
 						txtCorreo.setText(rs.getString("correo"));
 						txtTipoUser.setText(rs.getString("id_tipo"));
 					}else {
-						JOptionPane.showMessageDialog(null, "No existe un usuario con ese código, porfavor introduce uno válido");
+						JOptionPane.showMessageDialog(null, "No existe un empleado con ese código, porfavor introduce uno válido", "Error", JOptionPane.WARNING_MESSAGE);
 					}
 				} catch (Exception err) {
 					System.err.println(err);
 				}
 			}
 		});
-		btnBuscar.setBounds(238, 22, 89, 23);
-		contentPane.add(btnBuscar);
 		
 		txtTipoUser = new JTextField();
-		txtTipoUser.setBounds(178, 206, 195, 20);
-		contentPane.add(txtTipoUser);
 		txtTipoUser.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Tipo Usuario:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_3.setBounds(73, 209, 85, 14);
-		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Introduzca un c\u00F3digo");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.ITALIC, 10));
-		lblNewLabel_4.setBounds(337, 22, 146, 14);
-		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("para administrar ese usuario.");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.ITALIC, 10));
-		lblNewLabel_5.setBounds(337, 31, 136, 14);
-		contentPane.add(lblNewLabel_5);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(33)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+							.addGap(79))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(104)
+							.addComponent(txtCodUser)))
+					.addGap(10)
+					.addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel_5, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+							.addGap(10))
+						.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+					.addGap(42))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(53)
+					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+					.addGap(20)
+					.addComponent(txtNombreUser, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+					.addGap(152))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(85)
+					.addComponent(lblApellido, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+					.addGap(3)
+					.addComponent(txtPass, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+					.addGap(152))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(95)
+					.addComponent(lblPuesto, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(txtNombre, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+					.addGap(152))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(105)
+					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+					.addGap(22)
+					.addComponent(txtCorreo, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+					.addGap(152))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(68)
+					.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+					.addGap(20)
+					.addComponent(txtTipoUser, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+					.addGap(152))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(107)
+					.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+					.addGap(20)
+					.addComponent(btnEliminar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+					.addGap(17)
+					.addComponent(btnLimpiar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+					.addGap(109))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(17)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(1)
+							.addComponent(txtCodUser)
+							.addGap(2))
+						.addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(9)
+							.addComponent(lblNewLabel_5, GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+							.addGap(9)))
+					.addGap(37)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(3))
+						.addComponent(txtNombreUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblApellido))
+						.addComponent(txtPass))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblPuesto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(3))
+						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_2))
+						.addComponent(txtCorreo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(3))
+						.addComponent(txtTipoUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(22)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnModificar)
+						.addComponent(btnEliminar)
+						.addComponent(btnLimpiar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(34))
+		);
+		contentPane.setLayout(gl_contentPane);
 	}
 }
 

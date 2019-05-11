@@ -19,6 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class registroAdmin extends JFrame {
 
@@ -39,54 +41,33 @@ public class registroAdmin extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Usuario:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(86, 24, 65, 14);
-		contentPane.add(lblNewLabel);
 
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(161, 22, 138, 20);
-		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblContrasea.setBounds(67, 55, 84, 14);
-		contentPane.add(lblContrasea);
 
 		txtPassword = new JPasswordField();
-		txtPassword.setBounds(161, 53, 138, 20);
-		contentPane.add(txtPassword);
 
 		JLabel lblConfirmarContrasea = new JLabel("Confirmar  Contrase\u00F1a:");
 		lblConfirmarContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblConfirmarContrasea.setBounds(10, 86, 140, 14);
-		contentPane.add(lblConfirmarContrasea);
 
 		txtConfirmaPassword = new JPasswordField();
-		txtConfirmaPassword.setBounds(161, 84, 138, 20);
-		contentPane.add(txtConfirmaPassword);
 
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNombre.setBounds(86, 117, 76, 14);
-		contentPane.add(lblNombre);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(161, 115, 138, 20);
-		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		JLabel lblCorreo = new JLabel("Correo:");
 		lblCorreo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCorreo.setBounds(86, 148, 65, 14);
-		contentPane.add(lblCorreo);
 
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(161, 146, 138, 20);
-		contentPane.add(txtCorreo);
 		txtCorreo.setColumns(10);
 
 		/**
@@ -144,7 +125,7 @@ public class registroAdmin extends JFrame {
 										JOptionPane.showMessageDialog(null, "Registro Guardado");
 										limpiar();
 									} else {
-										JOptionPane.showMessageDialog(null, "Error al guardar el registro");
+										JOptionPane.showMessageDialog(null, "Error al guardar el registro","Error",JOptionPane.ERROR_MESSAGE);
 									}
 								} else {
 									JOptionPane.showMessageDialog(null,
@@ -175,28 +156,125 @@ public class registroAdmin extends JFrame {
 				txtIdTipo.setText("");
 			}
 		});
-		btnRegistrar.setBounds(161, 228, 118, 23);
-		contentPane.add(btnRegistrar);
 
 		txtIdTipo = new JTextField();
-		txtIdTipo.setBounds(161, 179, 138, 20);
-		contentPane.add(txtIdTipo);
 		txtIdTipo.setColumns(10);
 
 		JLabel lblTipoDeUsuario = new JLabel("Tipo de Usuario:");
 		lblTipoDeUsuario.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTipoDeUsuario.setBounds(33, 181, 118, 14);
-		contentPane.add(lblTipoDeUsuario);
 
 		JLabel lbladministrador = new JLabel("1) Administrador");
 		lbladministrador.setFont(new Font("Tahoma", Font.ITALIC, 10));
-		lbladministrador.setBounds(309, 179, 84, 14);
-		contentPane.add(lbladministrador);
 
 		JLabel lblNewLabel_1 = new JLabel("2) Usuario Normal");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 10));
-		lblNewLabel_1.setBounds(309, 193, 97, 14);
-		contentPane.add(lblNewLabel_1);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(81)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(txtUsuario, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addGap(130))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(62)
+					.addComponent(lblContrasea, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(txtPassword, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addGap(130))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(5)
+					.addComponent(lblConfirmarContrasea, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+					.addGap(11)
+					.addComponent(txtConfirmaPassword, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addGap(130))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(81)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(75)
+							.addComponent(txtNombre, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNombre, GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+							.addGap(137)))
+					.addGap(130))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(81)
+					.addComponent(lblCorreo, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(txtCorreo, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addGap(130))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(28)
+					.addComponent(lblTipoDeUsuario, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(txtIdTipo, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lbladministrador, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+							.addGap(13))
+						.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+					.addGap(23))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(156)
+					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+					.addGap(150))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(17)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+							.addGap(4))
+						.addComponent(txtUsuario))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+							.addGap(4))
+						.addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(lblConfirmarContrasea, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(4))
+						.addComponent(txtConfirmaPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+							.addGap(4)))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(lblCorreo, GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+							.addGap(4))
+						.addComponent(txtCorreo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(13)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(lblTipoDeUsuario, GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+							.addGap(12))
+						.addComponent(txtIdTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lbladministrador, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
+					.addGap(21)
+					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(6))
+		);
+		contentPane.setLayout(gl_contentPane);
 		setLocationRelativeTo(null);
 	}
 }

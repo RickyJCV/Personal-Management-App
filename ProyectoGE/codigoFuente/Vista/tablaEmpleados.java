@@ -29,12 +29,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class tablaEmpleados extends JFrame {
 
 	private JPanel contentPane;
 	private JTable jtEmpleados;
 	private JTextField txtCampo;
+	private JScrollPane scroll_1;
 
 	/**
 	 * Creamos la tabla que pueden ver los empleados
@@ -45,14 +48,10 @@ public class tablaEmpleados extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 
 		jtEmpleados = new JTable();
-		jtEmpleados.setBounds(22, 22, 561, 338);
 		panel.add(jtEmpleados);
 
 		try {
@@ -64,10 +63,9 @@ public class tablaEmpleados extends JFrame {
 			String[] datos = { "Código Empleado", "Nombre", "Apellido", "Puesto", "Horas" };
 			DefaultTableModel modelo = new DefaultTableModel(data, datos);
 			jtEmpleados.setModel(modelo);
-			JScrollPane scroll = new JScrollPane(jtEmpleados);
-			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scroll.setVisible(true);
-			getContentPane().add(scroll, BorderLayout.NORTH);
+			scroll_1 = new JScrollPane(jtEmpleados);
+			scroll_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scroll_1.setVisible(true);
 
 			/**
 			 * Establecemos la conexion
@@ -171,18 +169,52 @@ public class tablaEmpleados extends JFrame {
 			}
 		});
 
-		btnCargar.setBounds(410, 11, 89, 23);
-		panel.add(btnCargar);
-
 		txtCampo = new JTextField();
-		txtCampo.setBounds(241, 12, 159, 20);
-		panel.add(txtCampo);
 		txtCampo.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Introduce tu c\u00F3digo de empleado:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(10, 15, 221, 14);
-		panel.add(lblNewLabel);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scroll_1, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(scroll_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+		);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(txtCampo, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+					.addGap(136))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(15)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(15))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(12)
+					.addComponent(txtCampo)
+					.addGap(12))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(11)
+					.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(10))
+		);
+		panel.setLayout(gl_panel);
+		contentPane.setLayout(gl_contentPane);
 
 	}
 }
