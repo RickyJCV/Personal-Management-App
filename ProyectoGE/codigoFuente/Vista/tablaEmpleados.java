@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.awt.Button;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -38,6 +39,7 @@ public class tablaEmpleados extends JFrame {
 	private JTable jtEmpleados;
 	private JTextField txtCampo;
 	private JScrollPane scroll_1;
+	private JButton btnPdf;
 
 	/**
 	 * Creamos la tabla que pueden ver los empleados
@@ -186,6 +188,32 @@ public class tablaEmpleados extends JFrame {
 					.addComponent(scroll_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
 		);
+		
+		btnPdf = new JButton("Imprimir");
+		btnPdf.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnPdf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+						/**
+						 * FUNCION QUE IMPRIME UNA TABLA PARA UNA IMPRESORA O PDF
+						 */
+						MessageFormat header =new MessageFormat("Lista de Empleados");
+						MessageFormat pie =new MessageFormat("Página 1");
+						try {
+							jtEmpleados.print(JTable.PrintMode.NORMAL, header, pie);
+							
+						}catch(java.awt.print.PrinterException f) {
+							System.err.format("Error de impresion", f.getMessage());
+							
+						}
+						
+									
+			
+					}
+				});
+				btnPdf.setBounds(473, 4, 180, 56);
+				panel.add(btnPdf);
+		
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -196,7 +224,9 @@ public class tablaEmpleados extends JFrame {
 					.addComponent(txtCampo, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
 					.addGap(10)
 					.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-					.addGap(136))
+					.addGap(28)
+					.addComponent(btnPdf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(19))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -206,11 +236,13 @@ public class tablaEmpleados extends JFrame {
 					.addGap(15))
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(12)
-					.addComponent(txtCampo)
+					.addComponent(txtCampo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(12))
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(11)
-					.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnPdf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(10))
 		);
 		panel.setLayout(gl_panel);

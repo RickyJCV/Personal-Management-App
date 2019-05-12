@@ -24,6 +24,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 
 public class login extends JFrame {
 
@@ -40,6 +41,7 @@ public class login extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconoVentanas.png")).getImage());
 
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 14));
