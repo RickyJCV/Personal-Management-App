@@ -30,30 +30,35 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class tablaEmpleados extends JFrame {
 
 	private JPanel contentPane;
 	private JTable jtEmpleados;
 	private JTextField txtCampo;
-	private JScrollPane scroll_1;
-	private JButton btnPdf;
 
 	/**
 	 * Creamos la tabla que pueden ver los empleados
 	 */
 	public tablaEmpleados() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(tablaEmpleados.class.getResource("/imagenes/home.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 661, 519);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 
 		jtEmpleados = new JTable();
+		jtEmpleados.setBounds(22, 22, 561, 338);
 		panel.add(jtEmpleados);
 
 		try {
@@ -65,9 +70,10 @@ public class tablaEmpleados extends JFrame {
 			String[] datos = { "Código Empleado", "Nombre", "Apellido", "Puesto", "Horas" };
 			DefaultTableModel modelo = new DefaultTableModel(data, datos);
 			jtEmpleados.setModel(modelo);
-			scroll_1 = new JScrollPane(jtEmpleados);
-			scroll_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scroll_1.setVisible(true);
+			JScrollPane scroll = new JScrollPane(jtEmpleados);
+			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scroll.setVisible(true);
+			getContentPane().add(scroll, BorderLayout.NORTH);
 
 			/**
 			 * Establecemos la conexion
@@ -107,6 +113,7 @@ public class tablaEmpleados extends JFrame {
 		 * Añadimos un boton de busqueda para encontrar nuestros datos
 		 */
 		JButton btnCargar = new JButton("Buscar");
+		btnCargar.setIcon(new ImageIcon(tablaEmpleados.class.getResource("/imagenes/Buscar.png")));
 		btnCargar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -171,82 +178,48 @@ public class tablaEmpleados extends JFrame {
 			}
 		});
 
+		btnCargar.setBounds(386, 11, 109, 23);
+		panel.add(btnCargar);
+
 		txtCampo = new JTextField();
+		txtCampo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				char c = arg0.getKeyChar();
+				if(c<'0' || c>'9')
+					arg0.consume();
+			}
+		});
+		txtCampo.setBounds(217, 12, 159, 20);
+		panel.add(txtCampo);
 		txtCampo.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Introduce tu c\u00F3digo de empleado:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(scroll_1, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scroll_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-		);
+		lblNewLabel.setBounds(10, 15, 221, 14);
+		panel.add(lblNewLabel);
 		
-		btnPdf = new JButton("Imprimir");
-		btnPdf.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnPdf.addActionListener(new ActionListener() {
+		JButton btnImprimir = new JButton("Imprimir");
+		btnImprimir.setIcon(new ImageIcon(tablaEmpleados.class.getResource("/imagenes/imprimir.png")));
+		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-						/**
-						 * FUNCION QUE IMPRIME UNA TABLA PARA UNA IMPRESORA O PDF
-						 */
-						MessageFormat header =new MessageFormat("Lista de Empleados");
-						MessageFormat pie =new MessageFormat("Página 1");
-						try {
-							jtEmpleados.print(JTable.PrintMode.NORMAL, header, pie);
-							
-						}catch(java.awt.print.PrinterException f) {
-							System.err.format("Error de impresion", f.getMessage());
-							
-						}
-						
-									
-			
-					}
-				});
-				btnPdf.setBounds(473, 4, 180, 56);
-				panel.add(btnPdf);
-		
-		
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-					.addGap(10)
-					.addComponent(txtCampo, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-					.addGap(10)
-					.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-					.addGap(28)
-					.addComponent(btnPdf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(19))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(15)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(15))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(12)
-					.addComponent(txtCampo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(12))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnPdf, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(10))
-		);
-		panel.setLayout(gl_panel);
-		contentPane.setLayout(gl_contentPane);
+				/**
+				 * FUNCION QUE IMPRIME UNA TABLA PARA UNA IMPRESORA O PDF
+				 */
+				MessageFormat header =new MessageFormat("Lista de Empleados");
+				MessageFormat pie =new MessageFormat("Página 1");
+				try {
+					jtEmpleados.print(JTable.PrintMode.FIT_WIDTH, header, pie);
+
+				}catch(java.awt.print.PrinterException f) {
+					System.err.format("Error de impresion", f.getMessage());
+
+				}
+			}
+		});
+		btnImprimir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnImprimir.setBounds(505, 11, 111, 23);
+		panel.add(btnImprimir);
 
 	}
 }

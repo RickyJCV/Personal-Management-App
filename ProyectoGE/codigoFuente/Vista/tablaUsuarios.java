@@ -25,29 +25,35 @@ import javax.swing.table.DefaultTableModel;
 import Modelo.conexion;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class tablaUsuarios extends JFrame {
 
 	private JPanel contentPane;
 	private JTable jtUsuarios;
 	private JTextField txtCampo;
-	private JScrollPane scroll_1;
 
 	/**
 	 * Creamos la tabla que pueden ver los empleados
 	 */
 	public tablaUsuarios() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(tablaUsuarios.class.getResource("/imagenes/home.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 661, 519);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 
 		jtUsuarios = new JTable();
+		jtUsuarios.setBounds(22, 22, 561, 338);
 		panel.add(jtUsuarios);
 
 		try {
@@ -59,9 +65,10 @@ public class tablaUsuarios extends JFrame {
 			String[] datos = { "ID Usuario","Usuario", "Contraseña", "Nombre", "Correo", "Última sesión", "Tipo de Usuario" };
 			DefaultTableModel modelo = new DefaultTableModel(data, datos);
 			jtUsuarios.setModel(modelo);
-			scroll_1 = new JScrollPane(jtUsuarios);
-			scroll_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scroll_1.setVisible(true);
+			JScrollPane scroll = new JScrollPane(jtUsuarios);
+			scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scroll.setVisible(true);
+			getContentPane().add(scroll, BorderLayout.NORTH);
 
 			/**
 			 * Establecemos la conexion
@@ -101,6 +108,7 @@ public class tablaUsuarios extends JFrame {
 		 * Añadimos un boton de busqueda para encontrar nuestros datos
 		 */
 		JButton btnCargar = new JButton("Buscar");
+		btnCargar.setIcon(new ImageIcon(tablaUsuarios.class.getResource("/imagenes/Buscar.png")));
 		btnCargar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -165,58 +173,27 @@ public class tablaUsuarios extends JFrame {
 			}
 		});
 
+		btnCargar.setBounds(410, 11, 108, 23);
+		panel.add(btnCargar);
+
 		txtCampo = new JTextField();
+		txtCampo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(c<'0' || c>'9')
+					e.consume();
+			}
+		});
+		txtCampo.setBounds(241, 12, 159, 20);
+		panel.add(txtCampo);
 		txtCampo.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Introduce el ID de usuario:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(scroll_1, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scroll_1, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-		);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(29)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-							.addGap(150))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(212)
-							.addComponent(txtCampo, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)))
-					.addGap(10)
-					.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-					.addGap(136))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(12)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(3))
-						.addComponent(txtCampo))
-					.addGap(12))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(11)
-					.addComponent(btnCargar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(10))
-		);
-		panel.setLayout(gl_panel);
-		contentPane.setLayout(gl_contentPane);
+		lblNewLabel.setBounds(29, 15, 221, 14);
+		panel.add(lblNewLabel);
 
 	}
 }

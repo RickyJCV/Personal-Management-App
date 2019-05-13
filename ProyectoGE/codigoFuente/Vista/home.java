@@ -14,10 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Toolkit;
 
 public class home extends JFrame {
 
@@ -28,15 +26,17 @@ public class home extends JFrame {
 	 * Constructor que recibe el modelo de usuarios para el HOME
 	 */
 	public home(usuarios mod) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(home.class.getResource("/imagenes/home.png")));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 593, 426);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JButton btnDarAltaUsuarios = new JButton("Dar Alta Usuarios");
-		btnDarAltaUsuarios.setBounds(40, 188, 219, 35);
+		btnDarAltaUsuarios.setIcon(new ImageIcon(home.class.getResource("/imagenes/altausuario.png")));
 		btnDarAltaUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
 		btnDarAltaUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -44,9 +44,11 @@ public class home extends JFrame {
 				Registro.setVisible(true);
 			}
 		});
+		btnDarAltaUsuarios.setBounds(50, 206, 235, 35);
+		contentPane.add(btnDarAltaUsuarios);
 		
 		JButton btnVerUsuarios = new JButton("Ver Usuarios");
-		btnVerUsuarios.setBounds(40, 140, 219, 35);
+		btnVerUsuarios.setIcon(new ImageIcon(home.class.getResource("/imagenes/ver.png")));
 		btnVerUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tablaUsuarios verUsuarios = new tablaUsuarios();
@@ -54,9 +56,11 @@ public class home extends JFrame {
 			}
 		});
 		btnVerUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnVerUsuarios.setBounds(50, 160, 235, 35);
+		contentPane.add(btnVerUsuarios);
 		
 		JButton btnAdministrarUsuarios = new JButton("Administrar Usuarios");
-		btnAdministrarUsuarios.setBounds(40, 234, 219, 37);
+		btnAdministrarUsuarios.setIcon(new ImageIcon(home.class.getResource("/imagenes/administrar.png")));
 		btnAdministrarUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				administrarUsuarios verUsuarios = new administrarUsuarios();
@@ -64,9 +68,11 @@ public class home extends JFrame {
 			}
 		});
 		btnAdministrarUsuarios.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnAdministrarUsuarios.setBounds(50, 252, 235, 37);
+		contentPane.add(btnAdministrarUsuarios);
 		
 		JButton btnVerEmpleados = new JButton("Ver Empleados");
-		btnVerEmpleados.setBounds(309, 140, 219, 33);
+		btnVerEmpleados.setIcon(new ImageIcon(home.class.getResource("/imagenes/ver.png")));
 		btnVerEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tablaEmpleados verEmpleados = new tablaEmpleados();
@@ -74,9 +80,11 @@ public class home extends JFrame {
 			}
 		});
 		btnVerEmpleados.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnVerEmpleados.setBounds(306, 161, 235, 33);
+		contentPane.add(btnVerEmpleados);
 		
 		JButton btnAdministrarEmpleados = new JButton("Administrar Empleados");
-		btnAdministrarEmpleados.setBounds(309, 188, 219, 35);
+		btnAdministrarEmpleados.setIcon(new ImageIcon(home.class.getResource("/imagenes/administrar.png")));
 		btnAdministrarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				administrarEmpleados frame = new administrarEmpleados();
@@ -84,10 +92,11 @@ public class home extends JFrame {
 			}
 		});
 		btnAdministrarEmpleados.setFont(new Font("Consolas", Font.BOLD, 14));
+		btnAdministrarEmpleados.setBounds(306, 206, 235, 35);
+		contentPane.add(btnAdministrarEmpleados);
 		
 		JButton btnVerTurnos = new JButton("VER TURNOS Y SUELDO");
-		btnVerTurnos.setBounds(77, 113, 421, 203);
-		btnVerTurnos.setIcon(new ImageIcon(home.class.getResource("/imagenes/verTurnos.png")));
+		btnVerTurnos.setIcon(new ImageIcon(home.class.getResource("/imagenes/verTurnosySueldo.png")));
 		btnVerTurnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tablaEmpleados tabla = new tablaEmpleados();
@@ -95,35 +104,30 @@ public class home extends JFrame {
 			}
 		});
 		btnVerTurnos.setFont(new Font("Monospaced", Font.BOLD, 16));
+		btnVerTurnos.setBounds(109, 136, 373, 168);
+		contentPane.add(btnVerTurnos);
 		
 		JLabel lblUser = new JLabel("\u00A1Bienvenido, para ver su turno y sueldo pulse el bot\u00F3n y \r\nintroduzca su C\u00F3digo!");
-		lblUser.setBounds(-82, 56, 746, 27);
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setFont(new Font("Consolas", Font.BOLD, 12));
+		lblUser.setBounds(10, 58, 557, 29);
+		contentPane.add(lblUser);
 		
 		JLabel lblAdmin = new JLabel("\u00A1Bienvenido al Sistema de Gesti\u00F3n de Empleados y Usuarios!");
-		lblAdmin.setBounds(-82, 29, 746, 21);
 		lblAdmin.setFont(new Font("Consolas", Font.BOLD, 16));
 		lblAdmin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdmin.setBounds(10, 40, 557, 23);
+		contentPane.add(lblAdmin);
 		
 		JLabel lblUsuariosAdmin = new JLabel("Gesti\u00F3n de Usuarios");
-		lblUsuariosAdmin.setBounds(77, 113, 276, 16);
 		lblUsuariosAdmin.setFont(new Font("Consolas", Font.BOLD, 15));
+		lblUsuariosAdmin.setBounds(69, 114, 178, 16);
+		contentPane.add(lblUsuariosAdmin);
 		
 		JLabel lblEmpleadosAdmin = new JLabel("Gesti\u00F3n de Empleados");
-		lblEmpleadosAdmin.setBounds(352, 114, 279, 14);
 		lblEmpleadosAdmin.setFont(new Font("Consolas", Font.BOLD, 15));
-		contentPane.setLayout(null);
-		contentPane.add(lblUser);
-		contentPane.add(lblAdmin);
-		contentPane.add(lblUsuariosAdmin);
+		lblEmpleadosAdmin.setBounds(346, 115, 183, 14);
 		contentPane.add(lblEmpleadosAdmin);
-		contentPane.add(btnVerUsuarios);
-		contentPane.add(btnAdministrarEmpleados);
-		contentPane.add(btnDarAltaUsuarios);
-		contentPane.add(btnAdministrarUsuarios);
-		contentPane.add(btnVerEmpleados);
-		contentPane.add(btnVerTurnos);
 
 		setLocationRelativeTo(null);
 		this.mod = mod;

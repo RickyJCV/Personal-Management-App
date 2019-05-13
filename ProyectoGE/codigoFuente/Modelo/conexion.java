@@ -9,7 +9,7 @@ public class conexion {
 	private final static String user = "root";
 	private final static String password = "manolo";
 	private final static String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private final static String url = "jdbc:mysql://localhost:3306/"+base+ timeZone;
+	private final static String url = "jdbc:mysql://localhost:3308/"+base+ timeZone;
 	private static Connection con = null;
 	
 	/**

@@ -16,15 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 
 public class login extends JFrame {
 
@@ -41,20 +39,30 @@ public class login extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconoVentanas.png")).getImage());
+		this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/usuarionormal.png")).getImage());
+		contentPane.setLayout(null);
 
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUsuario.setBounds(126, 99, 103, 17);
+		contentPane.add(lblUsuario);
 
 		txtUsuario = new JTextField();
+		txtUsuario.setBounds(218, 99, 129, 20);
+		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblContrasea.setBounds(105, 147, 103, 17);
+		contentPane.add(lblContrasea);
 
 		txtPassword = new JPasswordField();
+		txtPassword.setBounds(218, 147, 129, 20);
+		contentPane.add(txtPassword);
 
 		JButton btnIngresar = new JButton("Iniciar Sesi\u00F3n");
+		btnIngresar.setIcon(new ImageIcon(login.class.getResource("/imagenes/login.png")));
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -90,11 +98,16 @@ public class login extends JFrame {
 				}
 			}
 		});
+		btnIngresar.setBounds(198, 193, 149, 25);
+		contentPane.add(btnIngresar);
 		
 		JLabel lblNewLabel = new JLabel("Bienvenido al Sistema de Gesti\u00F3n de Empleados y Usuarios");
 		lblNewLabel.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
+		lblNewLabel.setBounds(10, 11, 493, 77);
+		contentPane.add(lblNewLabel);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.setIcon(new ImageIcon(login.class.getResource("/imagenes/registro.png")));
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				registro frame = new registro();
@@ -102,66 +115,13 @@ public class login extends JFrame {
 			}
 		});
 		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnRegistrarse.setBounds(53, 287, 143, 23);
+		contentPane.add(btnRegistrarse);
 		
 		JLabel lblParaRegistrarsePulse = new JLabel("Para registrarse pulse el siguiente bot\u00F3n:");
 		lblParaRegistrarsePulse.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(121)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(92)
-							.addComponent(txtUsuario, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblUsuario, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-							.addGap(118)))
-					.addGap(161))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(100)
-					.addComponent(lblContrasea, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-					.addGap(10)
-					.addComponent(txtPassword, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-					.addGap(161))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(193)
-					.addComponent(btnIngresar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(191))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lblParaRegistrarsePulse, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-					.addGap(265))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(48)
-					.addComponent(btnRegistrarse, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(346))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(26)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
-					.addGap(26))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-					.addGap(17)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtUsuario)
-						.addComponent(lblUsuario))
-					.addGap(28)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblContrasea)
-						.addComponent(txtPassword))
-					.addGap(26)
-					.addComponent(btnIngresar, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-					.addGap(38)
-					.addComponent(lblParaRegistrarsePulse, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-					.addGap(11)
-					.addComponent(btnRegistrarse, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(18))
-		);
-		contentPane.setLayout(gl_contentPane);
+		lblParaRegistrarsePulse.setBounds(10, 256, 233, 20);
+		contentPane.add(lblParaRegistrarsePulse);
 		setLocationRelativeTo(null);
 	}
 }
