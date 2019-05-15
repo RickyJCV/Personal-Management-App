@@ -23,12 +23,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Modelo.conexion;
+import Modelo.sqlUsuarios;
+
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.FileWriter;
 
 public class tablaUsuarios extends JFrame {
 
@@ -173,7 +176,7 @@ public class tablaUsuarios extends JFrame {
 			}
 		});
 
-		btnCargar.setBounds(410, 11, 108, 23);
+		btnCargar.setBounds(354, 11, 108, 23);
 		panel.add(btnCargar);
 
 		txtCampo = new JTextField();
@@ -185,15 +188,52 @@ public class tablaUsuarios extends JFrame {
 					e.consume();
 			}
 		});
-		txtCampo.setBounds(241, 12, 159, 20);
+		txtCampo.setBounds(185, 12, 159, 20);
 		panel.add(txtCampo);
 		txtCampo.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Introduce el ID de usuario:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(29, 15, 221, 14);
+		lblNewLabel.setBounds(0, 15, 194, 14);
 		panel.add(lblNewLabel);
+		
+		JButton btnCsv = new JButton("Generar CSV");
+		btnCsv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				conexion conn = new conexion();
+				Connection con = conn.getConexion();
+				String sql2 = "SELECT * FROM usuarios";
+
+				try {
+					PreparedStatement ps = con.prepareStatement(sql2);;
+					ResultSet rs2 = ps.executeQuery();
+					
+					String extension = ".csv";
+					String ruta = "codigoFuente/ficheros/bbddUsuarios" + extension;
+					FileWriter writer = new FileWriter(ruta);
+					writer.write("Id;Usuario;Password;Nombre;Correo;Ultima Sesion;Tipo de ID\n");
+					/* Siguiente linea escribe bbdd en fichero */
+					while (rs2.next()) {
+						
+						writer.write(rs2.getInt("id") +";"+rs2.getString("usuario")+";"
+								+rs2.getString("password") + ";"+rs2.getString("nombre")+";"
+								+rs2.getString("correo") + ";"+rs2.getString("last_session")+";"
+								+rs2.getString("id_tipo")+"\n");
+					}
+					writer.close();
+					JOptionPane.showMessageDialog(null, "Fichero creado con éxito");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Error");
+}
+				
+			}
+		});
+		btnCsv.setIcon(new ImageIcon(tablaUsuarios.class.getResource("/imagenes/csv.png")));
+		btnCsv.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCsv.setBounds(483, 11, 142, 23);
+		panel.add(btnCsv);
 
 	}
 }

@@ -1,0 +1,4 @@
+Id;Usuario;Password;Nombre;Correo;Ultima Sesion;Tipo de ID
+1;admin;d033e22ae348aeb5660fc2140aec35850c4da997;admin;admin@mail.com;2019-05-15 22:40:38;1
+2;pepe;265392dc2782778664cc9d56c8e3cd9956661bb0;pepe;pepe@gmail.com;2019-05-15 21:54:36;2
+3;agapito;464f6ae53e5f304ba2a0cce6b116e4054fc84843;agapito;agapito@mail.com;2019-05-15 22:41:19;2

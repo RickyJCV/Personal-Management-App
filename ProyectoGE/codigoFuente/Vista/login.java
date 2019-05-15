@@ -102,8 +102,8 @@ public class login extends JFrame {
 		contentPane.add(btnIngresar);
 		
 		JLabel lblNewLabel = new JLabel("Bienvenido al Sistema de Gesti\u00F3n de Empleados y Usuarios");
-		lblNewLabel.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
-		lblNewLabel.setBounds(10, 11, 493, 77);
+		lblNewLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
+		lblNewLabel.setBounds(44, 11, 432, 75);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
