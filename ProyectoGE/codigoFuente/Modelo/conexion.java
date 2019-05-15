@@ -3,6 +3,7 @@ package Modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class conexion {
 	private final static String base = "empleados";
@@ -11,6 +12,7 @@ public class conexion {
 	private final static String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private final static String url = "jdbc:mysql://localhost:3306/"+base+ timeZone;
 	private static Connection con = null;
+	static Statement consulta;
 	
 	/**
 	 * Función que genera la conexión con la base de datos
@@ -28,5 +30,7 @@ public class conexion {
 		}
 		return con;
 	}
-
+	
 }
+
+

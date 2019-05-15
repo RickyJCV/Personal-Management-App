@@ -122,6 +122,28 @@ public class login extends JFrame {
 		lblParaRegistrarsePulse.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		lblParaRegistrarsePulse.setBounds(10, 256, 233, 20);
 		contentPane.add(lblParaRegistrarsePulse);
+		
+		JButton btnNewButton = new JButton("Restaurar Clave");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				contraseñaOlvidada frame = new contraseñaOlvidada();
+				frame.setVisible(true);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton.setIcon(new ImageIcon(login.class.getResource("/imagenes/olvidarPass.png")));
+		btnNewButton.setBounds(298, 287, 178, 23);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblSiHaOlvidado = new JLabel("Si ha olvidado su contrase\u00F1a");
+		lblSiHaOlvidado.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		lblSiHaOlvidado.setBounds(311, 256, 165, 14);
+		contentPane.add(lblSiHaOlvidado);
+		
+		JLabel lblPulseElSiguiente = new JLabel("pulse el siguiente bot\u00F3n:");
+		lblPulseElSiguiente.setFont(new Font("Tahoma", Font.ITALIC, 13));
+		lblPulseElSiguiente.setBounds(321, 270, 167, 14);
+		contentPane.add(lblPulseElSiguiente);
 		setLocationRelativeTo(null);
 	}
 }
