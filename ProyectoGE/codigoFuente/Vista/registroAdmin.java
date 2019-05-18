@@ -24,6 +24,13 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Esta vista se usa para el registro que ve el usuario administrador
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class registroAdmin extends JFrame {
 
 	private JPanel contentPane;
@@ -189,7 +196,7 @@ public class registroAdmin extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(c<'0' || c>'9')
+				if (c < '0' || c > '9')
 					e.consume();
 			}
 		});

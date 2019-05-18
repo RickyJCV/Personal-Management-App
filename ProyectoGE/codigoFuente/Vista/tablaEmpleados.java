@@ -35,6 +35,13 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Esta vista se usa para mostrar la tabla de empleados
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class tablaEmpleados extends JFrame {
 
 	private JPanel contentPane;
@@ -186,7 +193,7 @@ public class tablaEmpleados extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
 				char c = arg0.getKeyChar();
-				if(c<'0' || c>'9')
+				if (c < '0' || c > '9')
 					arg0.consume();
 			}
 		});
@@ -198,7 +205,10 @@ public class tablaEmpleados extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(10, 15, 221, 14);
 		panel.add(lblNewLabel);
-		
+
+		/**
+		 * Boton que usamos para imprimir por impresora
+		 */
 		JButton btnImprimir = new JButton("Imprimir");
 		btnImprimir.setIcon(new ImageIcon(tablaEmpleados.class.getResource("/imagenes/imprimir.png")));
 		btnImprimir.addActionListener(new ActionListener() {
@@ -206,12 +216,12 @@ public class tablaEmpleados extends JFrame {
 				/**
 				 * FUNCION QUE IMPRIME UNA TABLA PARA UNA IMPRESORA O PDF
 				 */
-				MessageFormat header =new MessageFormat("Lista de Empleados");
-				MessageFormat pie =new MessageFormat("Página 1");
+				MessageFormat header = new MessageFormat("Lista de Empleados");
+				MessageFormat pie = new MessageFormat("Página 1");
 				try {
 					jtEmpleados.print(JTable.PrintMode.FIT_WIDTH, header, pie);
 
-				}catch(java.awt.print.PrinterException f) {
+				} catch (java.awt.print.PrinterException f) {
 					System.err.format("Error de impresion", f.getMessage());
 
 				}

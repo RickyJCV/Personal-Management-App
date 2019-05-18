@@ -33,6 +33,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.FileWriter;
 
+/**
+ * Esta vista se usa para mostrar la tabla de usuarios
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class tablaUsuarios extends JFrame {
 
 	private JPanel contentPane;
@@ -40,7 +47,7 @@ public class tablaUsuarios extends JFrame {
 	private JTextField txtCampo;
 
 	/**
-	 * Creamos la tabla que pueden ver los empleados
+	 * Creamos la tabla para visualizar los usuarios
 	 */
 	public tablaUsuarios() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(tablaUsuarios.class.getResource("/imagenes/home.png")));
@@ -65,7 +72,8 @@ public class tablaUsuarios extends JFrame {
 			 * un scroll
 			 */
 			Object[][] data = new Object[0][0];
-			String[] datos = { "ID Usuario","Usuario", "Contraseña", "Nombre", "Correo", "Última sesión", "Tipo de Usuario" };
+			String[] datos = { "ID Usuario", "Usuario", "Contraseña", "Nombre", "Correo", "Última sesión",
+					"Tipo de Usuario" };
 			DefaultTableModel modelo = new DefaultTableModel(data, datos);
 			jtUsuarios.setModel(modelo);
 			JScrollPane scroll = new JScrollPane(jtUsuarios);
@@ -81,7 +89,7 @@ public class tablaUsuarios extends JFrame {
 			conexion conn = new conexion();
 			Connection con = conn.getConexion();
 			/**
-			 * Ejecutamos la sql para recibir los datos
+			 * Ejecutamos la sql para recibir los datos de los usuarios
 			 */
 			String sql = "SELECT * FROM usuarios";
 			ps = con.prepareStatement(sql);
@@ -130,7 +138,8 @@ public class tablaUsuarios extends JFrame {
 						 * un scroll
 						 */
 						Object[][] data = new Object[0][0];
-						String[] datos = { "ID Usuario","Usuario", "Contraseña", "Nombre", "Correo", "Última sesión", "Tipo de Usuario" };
+						String[] datos = { "ID Usuario", "Usuario", "Contraseña", "Nombre", "Correo", "Última sesión",
+								"Tipo de Usuario" };
 						DefaultTableModel modelo = new DefaultTableModel(data, datos);
 						jtUsuarios.setModel(modelo);
 						JScrollPane scroll = new JScrollPane(jtUsuarios);
@@ -184,7 +193,7 @@ public class tablaUsuarios extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(c<'0' || c>'9')
+				if (c < '0' || c > '9')
 					e.consume();
 			}
 		});
@@ -197,37 +206,43 @@ public class tablaUsuarios extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(0, 15, 194, 14);
 		panel.add(lblNewLabel);
-		
+
+		/**
+		 * Botón para generar un archivo csv con la tabla de la base de datos
+		 */
 		JButton btnCsv = new JButton("Generar CSV");
 		btnCsv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				conexion conn = new conexion();
 				Connection con = conn.getConexion();
 				String sql2 = "SELECT * FROM usuarios";
 
 				try {
-					PreparedStatement ps = con.prepareStatement(sql2);;
+					PreparedStatement ps = con.prepareStatement(sql2);
+					;
 					ResultSet rs2 = ps.executeQuery();
-					
+
 					String extension = ".csv";
 					String ruta = "codigoFuente/ficheros/bbddUsuarios" + extension;
 					FileWriter writer = new FileWriter(ruta);
+					// Establecemos las columnas que tendrá
 					writer.write("Id;Usuario;Password;Nombre;Correo;Ultima Sesion;Tipo de ID\n");
-					/* Siguiente linea escribe bbdd en fichero */
+					/**
+					 * Siguiente linea escribe bbdd en fichero
+					 */
 					while (rs2.next()) {
-						
-						writer.write(rs2.getInt("id") +";"+rs2.getString("usuario")+";"
-								+rs2.getString("password") + ";"+rs2.getString("nombre")+";"
-								+rs2.getString("correo") + ";"+rs2.getString("last_session")+";"
-								+rs2.getString("id_tipo")+"\n");
+
+						writer.write(rs2.getInt("id") + ";" + rs2.getString("usuario") + ";" + rs2.getString("password")
+								+ ";" + rs2.getString("nombre") + ";" + rs2.getString("correo") + ";"
+								+ rs2.getString("last_session") + ";" + rs2.getString("id_tipo") + "\n");
 					}
 					writer.close();
 					JOptionPane.showMessageDialog(null, "Fichero creado con éxito");
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, "Error");
-}
-				
+				}
+
 			}
 		});
 		btnCsv.setIcon(new ImageIcon(tablaUsuarios.class.getResource("/imagenes/csv.png")));

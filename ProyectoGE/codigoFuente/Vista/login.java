@@ -38,7 +38,7 @@ public class login extends JFrame {
 	private JPasswordField txtPassword;
 
 	/**
-	 * Frame del login
+	 * Frame del Login
 	 */
 	public login() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -92,8 +92,8 @@ public class login extends JFrame {
 					mod.setLast_session(fechaHora.format(date).toString());
 
 					/**
-					 * Hasta aquí ya hemos comprobado el Login y decimos que si es correcto que haga
-					 * esto
+					 * Hasta aquí ya hemos comprobado el Login y decimos que si es correcto que
+					 * muestre el Home
 					 */
 					if (modSql.login(mod)) {
 						home Home = new home(mod);

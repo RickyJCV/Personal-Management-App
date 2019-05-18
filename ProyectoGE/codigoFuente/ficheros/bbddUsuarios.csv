@@ -1,4 +1,5 @@
 Id;Usuario;Password;Nombre;Correo;Ultima Sesion;Tipo de ID
-1;admin;d033e22ae348aeb5660fc2140aec35850c4da997;admin;admin@mail.com;2019-05-16 00:57:16;1
-2;pepe;265392dc2782778664cc9d56c8e3cd9956661bb0;pepe;pepe@gmail.com;2019-05-15 21:54:36;2
-3;agapito;19efb1a535edf0d18f74c88ba58b772823b3b368;agapito;agapito@mail.com;2019-05-16 00:57:04;2
+1;admin;d033e22ae348aeb5660fc2140aec35850c4da997;admin;admin@mail.com;2019-05-18 21:31:45;1
+2;pepe;265392dc2782778664cc9d56c8e3cd9956661bb0;pepe;pepe@gmail.com;2019-05-18 16:10:44;2
+3;agapito;89732109103c357e11a117fd3ceabbbb89a39bfc;agapito;agapito@mail.com;2019-05-16 00:57:04;2
+4;ricardo;f16854bdbbea12b23012fc3eba7cbbdee660ff9f;ricardo;ricardo@mail.com;2019-05-18 21:31:14;2

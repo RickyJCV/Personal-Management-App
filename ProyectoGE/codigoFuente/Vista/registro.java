@@ -22,6 +22,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
+/**
+ * Esta vista se usa para el registro que ve el usuario normal
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class registro extends JFrame {
 
 	private JPanel contentPane;
@@ -90,7 +97,7 @@ public class registro extends JFrame {
 		txtCorreo.setBounds(161, 146, 138, 20);
 		contentPane.add(txtCorreo);
 		txtCorreo.setColumns(10);
-		
+
 		/**
 		 * Creamos el boton de dar de alta a los usuarios
 		 */
@@ -101,10 +108,10 @@ public class registro extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				sqlUsuarios modSql = new sqlUsuarios();
 				usuarios mod = new usuarios();
-				
+
 				String pass = new String(txtPassword.getPassword());
 				String passCon = new String(txtConfirmaPassword.getPassword());
-				
+
 				/**
 				 * Validamos que ninguno de los campos esten vacios
 				 */
@@ -119,32 +126,33 @@ public class registro extends JFrame {
 						/**
 						 * Comprobamos si el usuario existe o no
 						 */
-						if(modSql.existeUsuario(txtUsuario.getText())==0) {
+						if (modSql.existeUsuario(txtUsuario.getText()) == 0) {
 							/**
 							 * Comprobamos si el correo es valido
 							 */
-							if(modSql.esEmail(txtCorreo.getText())) {
-						
-						String nuevoPass = hash.sha1(pass);
+							if (modSql.esEmail(txtCorreo.getText())) {
 
-						mod.setUsuario(txtUsuario.getText());
-						mod.setPassword(nuevoPass);
-						mod.setNombre(txtNombre.getText());
-						mod.setCorreo(txtCorreo.getText());
-						/**
-						 * Establecemos que siempre que se registre sea de tipo usuario y no de tipo administrador por defecto
-						 */
-						mod.setId_tipo(2);
-						/**
-						 * Si todo se cumple guardamos los registros
-						 */
-						if (modSql.registrar(mod)) {
-							JOptionPane.showMessageDialog(null, "Registro Guardado");
-							limpiar();
-						} else {
-							JOptionPane.showMessageDialog(null, "Error al guardar el registro");
-						}
-							}else {
+								String nuevoPass = hash.sha1(pass);
+
+								mod.setUsuario(txtUsuario.getText());
+								mod.setPassword(nuevoPass);
+								mod.setNombre(txtNombre.getText());
+								mod.setCorreo(txtCorreo.getText());
+								/**
+								 * Establecemos que siempre que se registre sea de tipo usuario y no de tipo
+								 * administrador por defecto
+								 */
+								mod.setId_tipo(2);
+								/**
+								 * Si todo se cumple guardamos los registros
+								 */
+								if (modSql.registrar(mod)) {
+									JOptionPane.showMessageDialog(null, "Registro Guardado");
+									limpiar();
+								} else {
+									JOptionPane.showMessageDialog(null, "Error al guardar el registro");
+								}
+							} else {
 								JOptionPane.showMessageDialog(null, "El correo electrónico no es válido");
 							}
 						} else {
@@ -156,6 +164,7 @@ public class registro extends JFrame {
 					}
 				}
 			}
+
 			/**
 			 * Metodo que vacía los campos de texto
 			 */
