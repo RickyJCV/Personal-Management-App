@@ -7,7 +7,21 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Esta clase realiza consultas a la BBDD
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class sqlUsuarios extends conexion {
+
+	/**
+	 * Inserta datos en la BBDD
+	 * 
+	 * @param usr
+	 * @return boolean
+	 */
 
 	public boolean registrar(usuarios usr) {
 
@@ -35,6 +49,14 @@ public class sqlUsuarios extends conexion {
 		}
 	}
 
+	/**
+	 * Hace un select de todos los datos y establece la última vez que se ha
+	 * iniciado sesión
+	 * 
+	 * @param usr
+	 * @return boolean
+	 */
+
 	public boolean login(usuarios usr) {
 
 		/**
@@ -54,18 +76,18 @@ public class sqlUsuarios extends conexion {
 
 			if (rs.next()) {
 				if (usr.getPassword().equals(rs.getString(3))) {
-					
+
 					String sqlUpdate = "UPDATE usuarios SET last_session = ? WHERE id=?";
-					ps=con.prepareStatement(sqlUpdate);
+					ps = con.prepareStatement(sqlUpdate);
 					ps.setString(1, usr.getLast_session());
 					ps.setInt(2, rs.getInt(1));
 					ps.execute();
-					
+
 					usr.setId(rs.getInt(1));
 					usr.setNombre(rs.getString(4));
 					usr.setId_tipo(rs.getInt(5));
 					usr.setNombre_tipo(rs.getString(6));
-					
+
 					return true;
 				} else {
 					return false;
@@ -80,6 +102,12 @@ public class sqlUsuarios extends conexion {
 		}
 	}
 
+	/**
+	 * Comprueba si existe un usuario
+	 * 
+	 * @param usuario
+	 * @return Si existe o no
+	 */
 	public int existeUsuario(String usuario) {
 
 		/**
@@ -108,6 +136,13 @@ public class sqlUsuarios extends conexion {
 			return 1;
 		}
 	}
+
+	/**
+	 * Validación para el correo
+	 * 
+	 * @param correo
+	 * @return La búsqueda si coincide o no
+	 */
 
 	public boolean esEmail(String correo) {
 		// Patrón para validar el email

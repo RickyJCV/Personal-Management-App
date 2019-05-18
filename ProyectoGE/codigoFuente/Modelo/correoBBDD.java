@@ -5,10 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Esta clase realiza una select a la BBDD para obtener los correos
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class correoBBDD {
+	/**
+	 * Usamos esta clase para obtener los correos de la BBDD
+	 * 
+	 * @return Los correos uno a uno
+	 * @throws SQLException
+	 */
 	public static String[] Correo() throws SQLException {
-		int i=0;
-		int a=0;
+		// Campos de la clase
+		int i = 0;
+		int a = 0;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		conexion conn = new conexion();
@@ -20,17 +34,17 @@ public class correoBBDD {
 		ps = con.prepareStatement(sql);
 		rs = ps.executeQuery();
 
-             while (rs.next()) {
-				a++;	
-			}
-             String[] solucion = new String[a];
-             rs.beforeFirst();
-             while(rs.next()) {
-            	 
-             solucion[i]=rs.getString("correo");
-             i++;
-             }
-            return solucion;
-          
+		while (rs.next()) {
+			a++;
+		}
+		String[] solucion = new String[a];
+		rs.beforeFirst();
+		while (rs.next()) {
+
+			solucion[i] = rs.getString("correo");
+			i++;
+		}
+		return solucion;
+
 	}
 }

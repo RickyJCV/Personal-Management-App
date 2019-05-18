@@ -26,6 +26,13 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Esta vista se usa para administrar a los empleados
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class administrarEmpleados extends JFrame {
 
 	private JPanel contentPane;
@@ -34,11 +41,14 @@ public class administrarEmpleados extends JFrame {
 	private JTextField txtApellido;
 	private JTextField txtPuesto;
 	private JTextField txtSueldo;
-	private JTextField txtHoras;	
+	private JTextField txtHoras;
 
 	PreparedStatement ps;
 	ResultSet rs;
 
+	/**
+	 * Método que vacía los campos de texto
+	 */
 	private void limpiarCajas() {
 		txtCodEmpleado.setText(null);
 		txtNombre.setText(null);
@@ -49,10 +59,11 @@ public class administrarEmpleados extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructor del frame para administrar empleados
 	 */
 	public administrarEmpleados() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(administrarEmpleados.class.getResource("/imagenes/home.png")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(administrarEmpleados.class.getResource("/imagenes/home.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 570, 412);
 		contentPane = new JPanel();
@@ -91,11 +102,14 @@ public class administrarEmpleados extends JFrame {
 		contentPane.add(lblHoras);
 
 		txtCodEmpleado = new JTextField();
+		/**
+		 * Evento que obliga a que solo podamos meter numeros del 0 al 9
+		 */
 		txtCodEmpleado.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(c<'0' || c>'9')
+				if (c < '0' || c > '9')
 					e.consume();
 			}
 		});
@@ -128,6 +142,9 @@ public class administrarEmpleados extends JFrame {
 		txtHoras.setBounds(178, 221, 195, 20);
 		contentPane.add(txtHoras);
 
+		/**
+		 * Botón que sirve para guardar los datos
+		 */
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(administrarEmpleados.class.getResource("/imagenes/guardar.png")));
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -137,7 +154,8 @@ public class administrarEmpleados extends JFrame {
 
 				try {
 					con = conexion.getConexion();
-					ps = con.prepareStatement("INSERT INTO empleado(nombre, apellido, puesto, sueldo, horas) VALUES (?,?,?,?,?)");
+					ps = con.prepareStatement(
+							"INSERT INTO empleado(nombre, apellido, puesto, sueldo, horas) VALUES (?,?,?,?,?)");
 					ps.setString(1, txtNombre.getText());
 					ps.setString(2, txtApellido.getText());
 					ps.setString(3, txtPuesto.getText());
@@ -161,7 +179,9 @@ public class administrarEmpleados extends JFrame {
 		});
 		btnGuardar.setBounds(29, 287, 111, 23);
 		contentPane.add(btnGuardar);
-
+		/**
+		 * Botón que sirve para modificar los datos
+		 */
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.setIcon(new ImageIcon(administrarEmpleados.class.getResource("/imagenes/modificar.png")));
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -171,7 +191,8 @@ public class administrarEmpleados extends JFrame {
 
 				try {
 					con = conexion.getConexion();
-					ps = con.prepareStatement("UPDATE empleado SET nombre=?, apellido=?, puesto=?, sueldo=?, horas=? WHERE cod_empleado=?");
+					ps = con.prepareStatement(
+							"UPDATE empleado SET nombre=?, apellido=?, puesto=?, sueldo=?, horas=? WHERE cod_empleado=?");
 					ps.setString(1, txtNombre.getText());
 					ps.setString(2, txtApellido.getText());
 					ps.setString(3, txtPuesto.getText());
@@ -196,7 +217,9 @@ public class administrarEmpleados extends JFrame {
 		});
 		btnModificar.setBounds(150, 287, 114, 23);
 		contentPane.add(btnModificar);
-
+		/**
+		 * Botón que sirve para eliminar los datos
+		 */
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setIcon(new ImageIcon(administrarEmpleados.class.getResource("/imagenes/eliminar.png")));
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -226,7 +249,9 @@ public class administrarEmpleados extends JFrame {
 		});
 		btnEliminar.setBounds(274, 287, 123, 23);
 		contentPane.add(btnEliminar);
-
+		/**
+		 * Botón que sirve para eliminar los datos de los campos de texto
+		 */
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setIcon(new ImageIcon(administrarEmpleados.class.getResource("/imagenes/limpiar.png")));
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -237,7 +262,9 @@ public class administrarEmpleados extends JFrame {
 		});
 		btnLimpiar.setBounds(407, 287, 111, 23);
 		contentPane.add(btnLimpiar);
-
+		/**
+		 * Botón que sirve para buscar los datos por id
+		 */
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setIcon(new ImageIcon(administrarEmpleados.class.getResource("/imagenes/Buscar.png")));
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -247,19 +274,21 @@ public class administrarEmpleados extends JFrame {
 
 				try {
 					con = conexion.getConexion();
-					ps = con.prepareStatement("SELECT nombre,apellido,puesto,sueldo,horas FROM empleado WHERE cod_empleado=?");
+					ps = con.prepareStatement(
+							"SELECT nombre,apellido,puesto,sueldo,horas FROM empleado WHERE cod_empleado=?");
 					ps.setString(1, txtCodEmpleado.getText());
-					
+
 					rs = ps.executeQuery();
-					
+
 					if (rs.next()) {
 						txtNombre.setText(rs.getString("nombre"));
 						txtApellido.setText(rs.getString("apellido"));
 						txtPuesto.setText(rs.getString("puesto"));
 						txtSueldo.setText(rs.getString("sueldo"));
 						txtHoras.setText(rs.getString("horas"));
-					}else {
-						JOptionPane.showMessageDialog(null, "No existe un empleado con ese código, porfavor introduce uno válido");
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"No existe un empleado con ese código, porfavor introduce uno válido");
 					}
 				} catch (Exception err) {
 					System.err.println(err);
@@ -268,12 +297,12 @@ public class administrarEmpleados extends JFrame {
 		});
 		btnBuscar.setBounds(258, 24, 105, 23);
 		contentPane.add(btnBuscar);
-		
+
 		JLabel label = new JLabel("Introduzca un c\u00F3digo");
 		label.setFont(new Font("Tahoma", Font.ITALIC, 10));
 		label.setBounds(386, 24, 146, 14);
 		contentPane.add(label);
-		
+
 		JLabel lblParaAdministrarEse = new JLabel("para administrar ese empleado.");
 		lblParaAdministrarEse.setFont(new Font("Tahoma", Font.ITALIC, 10));
 		lblParaAdministrarEse.setBounds(386, 33, 146, 14);

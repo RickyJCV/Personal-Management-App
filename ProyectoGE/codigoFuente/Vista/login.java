@@ -24,6 +24,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
+/**
+ * Esta vista es el login para iniciar sesión
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class login extends JFrame {
 
 	private JPanel contentPane;
@@ -31,7 +38,7 @@ public class login extends JFrame {
 	private JPasswordField txtPassword;
 
 	/**
-	 * Creamos la ventana de login
+	 * Frame del login
 	 */
 	public login() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -60,7 +67,9 @@ public class login extends JFrame {
 		txtPassword = new JPasswordField();
 		txtPassword.setBounds(218, 147, 129, 20);
 		contentPane.add(txtPassword);
-
+		/**
+		 * Botón para iniciar sesión
+		 */
 		JButton btnIngresar = new JButton("Iniciar Sesi\u00F3n");
 		btnIngresar.setIcon(new ImageIcon(login.class.getResource("/imagenes/login.png")));
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -74,6 +83,7 @@ public class login extends JFrame {
 
 				String pass = new String(txtPassword.getPassword());
 
+				// Comprobamos la clave y el usuario
 				if (!txtUsuario.getText().equals("") && !pass.equals("")) {
 					String nuevoPass = hash.sha1(pass);
 
@@ -100,12 +110,14 @@ public class login extends JFrame {
 		});
 		btnIngresar.setBounds(198, 193, 149, 25);
 		contentPane.add(btnIngresar);
-		
+
 		JLabel lblNewLabel = new JLabel("Bienvenido al Sistema de Gesti\u00F3n de Empleados y Usuarios");
 		lblNewLabel.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		lblNewLabel.setBounds(44, 11, 432, 75);
 		contentPane.add(lblNewLabel);
-		
+		/**
+		 * Botón para resgitrarse en la BBDD
+		 */
 		JButton btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setIcon(new ImageIcon(login.class.getResource("/imagenes/registro.png")));
 		btnRegistrarse.addActionListener(new ActionListener() {
@@ -117,12 +129,14 @@ public class login extends JFrame {
 		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnRegistrarse.setBounds(53, 287, 143, 23);
 		contentPane.add(btnRegistrarse);
-		
+
 		JLabel lblParaRegistrarsePulse = new JLabel("Para registrarse pulse el siguiente bot\u00F3n:");
 		lblParaRegistrarsePulse.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		lblParaRegistrarsePulse.setBounds(10, 256, 233, 20);
 		contentPane.add(lblParaRegistrarsePulse);
-		
+		/**
+		 * Botón para restaurar la clave
+		 */
 		JButton btnNewButton = new JButton("Restaurar Clave");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -134,12 +148,12 @@ public class login extends JFrame {
 		btnNewButton.setIcon(new ImageIcon(login.class.getResource("/imagenes/olvidarPass.png")));
 		btnNewButton.setBounds(298, 287, 178, 23);
 		contentPane.add(btnNewButton);
-		
+
 		JLabel lblSiHaOlvidado = new JLabel("Si ha olvidado su contrase\u00F1a");
 		lblSiHaOlvidado.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		lblSiHaOlvidado.setBounds(311, 256, 165, 14);
 		contentPane.add(lblSiHaOlvidado);
-		
+
 		JLabel lblPulseElSiguiente = new JLabel("pulse el siguiente bot\u00F3n:");
 		lblPulseElSiguiente.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		lblPulseElSiguiente.setBounds(321, 270, 167, 14);

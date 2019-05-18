@@ -27,6 +27,13 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Esta vista se usa para administrar a los usuarios
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
+
 public class administrarUsuarios extends JFrame {
 
 	private JPanel contentPane;
@@ -40,6 +47,9 @@ public class administrarUsuarios extends JFrame {
 	PreparedStatement ps;
 	ResultSet rs;
 
+	/**
+	 * Método que vacía los campos de texto
+	 */
 	private void limpiarCajas() {
 		txtCodUser.setText(null);
 		txtNombreUser.setText(null);
@@ -50,7 +60,7 @@ public class administrarUsuarios extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructor del frame para administrar usuarios
 	 */
 	public administrarUsuarios() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(administrarUsuarios.class.getResource("/imagenes/home.png")));
@@ -87,11 +97,14 @@ public class administrarUsuarios extends JFrame {
 		contentPane.add(lblNewLabel_2);
 
 		txtCodUser = new JTextField();
+		/**
+		 * Evento que obliga a que solo podamos meter numeros del 0 al 9
+		 */
 		txtCodUser.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(c<'0' || c>'9')
+				if (c < '0' || c > '9')
 					e.consume();
 			}
 		});
@@ -118,7 +131,9 @@ public class administrarUsuarios extends JFrame {
 		txtCorreo.setColumns(10);
 		txtCorreo.setBounds(178, 175, 195, 20);
 		contentPane.add(txtCorreo);
-
+		/**
+		 * Botón que sirve para modificar los datos
+		 */
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.setIcon(new ImageIcon(administrarUsuarios.class.getResource("/imagenes/modificar.png")));
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -126,9 +141,10 @@ public class administrarUsuarios extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Connection con = null;
 
-				try {				
+				try {
 					con = conexion.getConexion();
-					ps = con.prepareStatement("UPDATE usuarios SET usuario=?, password=?, nombre=?, correo=?, id_tipo=? WHERE id=?");
+					ps = con.prepareStatement(
+							"UPDATE usuarios SET usuario=?, password=?, nombre=?, correo=?, id_tipo=? WHERE id=?");
 					String nuevoPass = hash.sha1(txtPass.getText());
 					ps.setString(1, txtNombreUser.getText());
 					ps.setString(2, nuevoPass);
@@ -154,7 +170,9 @@ public class administrarUsuarios extends JFrame {
 		});
 		btnModificar.setBounds(100, 248, 111, 23);
 		contentPane.add(btnModificar);
-
+		/**
+		 * Botón que sirve para eliminar los datos
+		 */
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setIcon(new ImageIcon(administrarUsuarios.class.getResource("/imagenes/eliminar.png")));
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -184,7 +202,9 @@ public class administrarUsuarios extends JFrame {
 		});
 		btnEliminar.setBounds(221, 248, 107, 23);
 		contentPane.add(btnEliminar);
-
+		/**
+		 * Botón que sirve para vaciar los datos de los campos de texto
+		 */
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setIcon(new ImageIcon(administrarUsuarios.class.getResource("/imagenes/limpiar.png")));
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -195,7 +215,9 @@ public class administrarUsuarios extends JFrame {
 		});
 		btnLimpiar.setBounds(338, 248, 100, 23);
 		contentPane.add(btnLimpiar);
-
+		/**
+		 * Botón que sirve para buscar los datos
+		 */
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setIcon(new ImageIcon(administrarUsuarios.class.getResource("/imagenes/Buscar.png")));
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
@@ -207,17 +229,18 @@ public class administrarUsuarios extends JFrame {
 					con = conexion.getConexion();
 					ps = con.prepareStatement("SELECT usuario,password,nombre,correo,id_tipo FROM usuarios WHERE id=?");
 					ps.setString(1, txtCodUser.getText());
-					
+
 					rs = ps.executeQuery();
-					
+
 					if (rs.next()) {
 						txtNombreUser.setText(rs.getString("usuario"));
 						txtPass.setText(rs.getString("password"));
 						txtNombre.setText(rs.getString("nombre"));
 						txtCorreo.setText(rs.getString("correo"));
 						txtTipoUser.setText(rs.getString("id_tipo"));
-					}else {
-						JOptionPane.showMessageDialog(null, "No existe un usuario con ese código, porfavor introduce uno válido");
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"No existe un usuario con ese código, porfavor introduce uno válido");
 					}
 				} catch (Exception err) {
 					System.err.println(err);
@@ -226,22 +249,22 @@ public class administrarUsuarios extends JFrame {
 		});
 		btnBuscar.setBounds(238, 22, 111, 23);
 		contentPane.add(btnBuscar);
-		
+
 		txtTipoUser = new JTextField();
 		txtTipoUser.setBounds(178, 206, 195, 20);
 		contentPane.add(txtTipoUser);
 		txtTipoUser.setColumns(10);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Tipo Usuario:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_3.setBounds(73, 209, 85, 14);
 		contentPane.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("Introduzca un c\u00F3digo");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.ITALIC, 10));
 		lblNewLabel_4.setBounds(384, 22, 146, 14);
 		contentPane.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("para administrar ese usuario.");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.ITALIC, 10));
 		lblNewLabel_5.setBounds(384, 31, 136, 14);

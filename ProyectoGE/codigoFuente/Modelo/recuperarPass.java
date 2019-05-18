@@ -5,12 +5,25 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Esta pretende restablecer las claves
+ * 
+ * @author Ricardo Jesús Cabrera Valero
+ *
+ */
 
 public class recuperarPass {
+	/**
+	 * Genera una contraseña
+	 * 
+	 * @param Correo
+	 * @return Nueva Contraseña
+	 * @throws SQLException
+	 */
 	public static String RecuperarCon(String Correo) throws SQLException {
 		String[] solucion = correoBBDD.Correo();
 		int contador = 0;
-		String nuevaContraseña="";
+		String nuevaContraseña = "";
 		while (contador < solucion.length) {
 			for (int i = 0; i < solucion.length; i++) {
 				contador++;
